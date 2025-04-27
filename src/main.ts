@@ -3,7 +3,6 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import * as cookieParser from 'cookie-parser';
-
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
@@ -24,6 +23,8 @@ async function bootstrap() {
     credentials: true,
     exposedHeaders: 'set-cookie',
   });
-  await app.listen(process.env.PORT ?? 3000);
+  const PORT = process.env.PORT ? Number(process.env.PORT) : 9000;
+
+  await app.listen(PORT ?? 9000);
 }
 bootstrap();

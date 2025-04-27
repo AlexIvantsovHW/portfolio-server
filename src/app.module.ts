@@ -3,23 +3,27 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { JobsModule } from './jobs/jobs.module';
 import { UniversityModule } from './university/university.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProjectsModule } from './projects/projects.module';
 import { FeedbacksModule } from './feedbacks/feedbacks.module';
 import { PersonalModule } from './personal/personal.module';
 import { ContactModule } from './contact/contact.module';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: '10032018',
-      database: 'portfolio',
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       autoLoadEntities: true,
-      synchronize: false, // ⚠️ Только для разработки
+      synchronize: false,
     }),
     JobsModule,
     UniversityModule,
