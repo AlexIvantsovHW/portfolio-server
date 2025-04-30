@@ -201,6 +201,10 @@ const config = {
         "fromEnvVar": null,
         "value": "darwin-arm64",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -218,16 +222,17 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://alex:10032018@localhost:5432/portfolio_db?schema=public"
+        "value": null
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel contact {\n  id       Int    @id @default(autoincrement())\n  whatsApp String\n  telegram String\n  linkedIn String\n  phone    String\n  email    String\n  cv       String\n  website  String\n  github   String\n  codewars String @default(\"https://codewars.com/user\")\n}\n\nmodel feedbacks {\n  id           Int      @id @default(autoincrement())\n  name         String\n  date         DateTime @db.Date\n  description  String\n  position     String\n  companyTitle String\n  logo         String\n}\n\nmodel jobs {\n  id           Int    @id @default(autoincrement())\n  software_id  Int\n  endAt        String @db.VarChar\n  companyTitle String @db.VarChar\n  startAt      String @db.VarChar\n  description  String @db.VarChar\n  jobTitle     String @db.VarChar\n}\n\nmodel personal {\n  id            Int    @id @default(autoincrement())\n  username      String\n  surname       String\n  age           Int\n  city          String\n  country       String\n  yearExperince Int\n  description   String\n}\n\nmodel projects {\n  id          Int      @id @default(autoincrement())\n  title       String\n  startAt     DateTime @db.Date\n  endAt       DateTime @db.Date\n  description String\n  link        String\n  logo        String\n}\n\nmodel universities {\n  id           Int     @id @default(autoincrement())\n  companyTitle String? @db.VarChar\n  companyLogo  String? @db.VarChar\n  startAt      String? @db.VarChar\n  endAt        String? @db.VarChar\n  title        String? @db.VarChar\n  link         String? @db.VarChar\n  certificate  String? @db.VarChar\n  description  String? @db.VarChar\n}\n",
-  "inlineSchemaHash": "5ca0131d28fa413e5424472037052e1208a2c204028c3c9268465930d3dfaa9d",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../generated/prisma\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel contact {\n  id       Int    @id @default(autoincrement())\n  whatsApp String\n  telegram String\n  linkedIn String\n  phone    String\n  email    String\n  cv       String\n  website  String\n  github   String\n  codewars String @default(\"https://codewars.com/user\")\n}\n\nmodel feedbacks {\n  id           Int      @id @default(autoincrement())\n  name         String\n  date         DateTime @db.Date\n  description  String\n  position     String\n  companyTitle String\n  logo         String\n}\n\nmodel jobs {\n  id           Int    @id @default(autoincrement())\n  software_id  Int\n  endAt        String @db.VarChar\n  companyTitle String @db.VarChar\n  startAt      String @db.VarChar\n  description  String @db.VarChar\n  jobTitle     String @db.VarChar\n}\n\nmodel personal {\n  id            Int    @id @default(autoincrement())\n  username      String\n  surname       String\n  age           Int\n  city          String\n  country       String\n  yearExperince Int\n  description   String\n}\n\nmodel projects {\n  id          Int      @id @default(autoincrement())\n  title       String\n  startAt     DateTime @db.Date\n  endAt       DateTime @db.Date\n  description String\n  link        String\n  logo        String\n}\n\nmodel universities {\n  id           Int     @id @default(autoincrement())\n  companyTitle String? @db.VarChar\n  companyLogo  String? @db.VarChar\n  startAt      String? @db.VarChar\n  endAt        String? @db.VarChar\n  title        String? @db.VarChar\n  link         String? @db.VarChar\n  certificate  String? @db.VarChar\n  description  String? @db.VarChar\n}\n",
+  "inlineSchemaHash": "9c37a66e3ea95602fa7e89dd4c55d9af64a8349c84763b8d29effcc67d7df09b",
   "copyEngine": true
 }
 config.dirname = '/'
