@@ -1338,40 +1338,36 @@ export namespace Prisma {
 
   export type ContactAvgAggregateOutputType = {
     id: number | null
-    whatsApp: number | null
-    telegram: number | null
-    phone: number | null
   }
 
   export type ContactSumAggregateOutputType = {
     id: number | null
-    whatsApp: bigint | null
-    telegram: bigint | null
-    phone: bigint | null
   }
 
   export type ContactMinAggregateOutputType = {
     id: number | null
-    whatsApp: bigint | null
-    telegram: bigint | null
+    whatsApp: string | null
+    telegram: string | null
     linkedIn: string | null
-    phone: bigint | null
+    phone: string | null
     email: string | null
     cv: string | null
     website: string | null
     github: string | null
+    codewars: string | null
   }
 
   export type ContactMaxAggregateOutputType = {
     id: number | null
-    whatsApp: bigint | null
-    telegram: bigint | null
+    whatsApp: string | null
+    telegram: string | null
     linkedIn: string | null
-    phone: bigint | null
+    phone: string | null
     email: string | null
     cv: string | null
     website: string | null
     github: string | null
+    codewars: string | null
   }
 
   export type ContactCountAggregateOutputType = {
@@ -1384,22 +1380,17 @@ export namespace Prisma {
     cv: number
     website: number
     github: number
+    codewars: number
     _all: number
   }
 
 
   export type ContactAvgAggregateInputType = {
     id?: true
-    whatsApp?: true
-    telegram?: true
-    phone?: true
   }
 
   export type ContactSumAggregateInputType = {
     id?: true
-    whatsApp?: true
-    telegram?: true
-    phone?: true
   }
 
   export type ContactMinAggregateInputType = {
@@ -1412,6 +1403,7 @@ export namespace Prisma {
     cv?: true
     website?: true
     github?: true
+    codewars?: true
   }
 
   export type ContactMaxAggregateInputType = {
@@ -1424,6 +1416,7 @@ export namespace Prisma {
     cv?: true
     website?: true
     github?: true
+    codewars?: true
   }
 
   export type ContactCountAggregateInputType = {
@@ -1436,6 +1429,7 @@ export namespace Prisma {
     cv?: true
     website?: true
     github?: true
+    codewars?: true
     _all?: true
   }
 
@@ -1527,14 +1521,15 @@ export namespace Prisma {
 
   export type ContactGroupByOutputType = {
     id: number
-    whatsApp: bigint
-    telegram: bigint
+    whatsApp: string
+    telegram: string
     linkedIn: string
-    phone: bigint
+    phone: string
     email: string
     cv: string
     website: string
     github: string
+    codewars: string
     _count: ContactCountAggregateOutputType | null
     _avg: ContactAvgAggregateOutputType | null
     _sum: ContactSumAggregateOutputType | null
@@ -1566,6 +1561,7 @@ export namespace Prisma {
     cv?: boolean
     website?: boolean
     github?: boolean
+    codewars?: boolean
   }, ExtArgs["result"]["contact"]>
 
   export type contactSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1578,6 +1574,7 @@ export namespace Prisma {
     cv?: boolean
     website?: boolean
     github?: boolean
+    codewars?: boolean
   }, ExtArgs["result"]["contact"]>
 
   export type contactSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1590,6 +1587,7 @@ export namespace Prisma {
     cv?: boolean
     website?: boolean
     github?: boolean
+    codewars?: boolean
   }, ExtArgs["result"]["contact"]>
 
   export type contactSelectScalar = {
@@ -1602,23 +1600,25 @@ export namespace Prisma {
     cv?: boolean
     website?: boolean
     github?: boolean
+    codewars?: boolean
   }
 
-  export type contactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "whatsApp" | "telegram" | "linkedIn" | "phone" | "email" | "cv" | "website" | "github", ExtArgs["result"]["contact"]>
+  export type contactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "whatsApp" | "telegram" | "linkedIn" | "phone" | "email" | "cv" | "website" | "github" | "codewars", ExtArgs["result"]["contact"]>
 
   export type $contactPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "contact"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      whatsApp: bigint
-      telegram: bigint
+      whatsApp: string
+      telegram: string
       linkedIn: string
-      phone: bigint
+      phone: string
       email: string
       cv: string
       website: string
       github: string
+      codewars: string
     }, ExtArgs["result"]["contact"]>
     composites: {}
   }
@@ -2043,14 +2043,15 @@ export namespace Prisma {
    */
   interface contactFieldRefs {
     readonly id: FieldRef<"contact", 'Int'>
-    readonly whatsApp: FieldRef<"contact", 'BigInt'>
-    readonly telegram: FieldRef<"contact", 'BigInt'>
+    readonly whatsApp: FieldRef<"contact", 'String'>
+    readonly telegram: FieldRef<"contact", 'String'>
     readonly linkedIn: FieldRef<"contact", 'String'>
-    readonly phone: FieldRef<"contact", 'BigInt'>
+    readonly phone: FieldRef<"contact", 'String'>
     readonly email: FieldRef<"contact", 'String'>
     readonly cv: FieldRef<"contact", 'String'>
     readonly website: FieldRef<"contact", 'String'>
     readonly github: FieldRef<"contact", 'String'>
+    readonly codewars: FieldRef<"contact", 'String'>
   }
     
 
@@ -7766,7 +7767,8 @@ export namespace Prisma {
     email: 'email',
     cv: 'cv',
     website: 'website',
-    github: 'github'
+    github: 'github',
+    codewars: 'codewars'
   };
 
   export type ContactScalarFieldEnum = (typeof ContactScalarFieldEnum)[keyof typeof ContactScalarFieldEnum]
@@ -7884,20 +7886,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'BigInt'
-   */
-  export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
-    
-
-
-  /**
-   * Reference to a field of type 'BigInt[]'
-   */
-  export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt[]'>
-    
-
-
-  /**
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
@@ -7947,14 +7935,15 @@ export namespace Prisma {
     OR?: contactWhereInput[]
     NOT?: contactWhereInput | contactWhereInput[]
     id?: IntFilter<"contact"> | number
-    whatsApp?: BigIntFilter<"contact"> | bigint | number
-    telegram?: BigIntFilter<"contact"> | bigint | number
+    whatsApp?: StringFilter<"contact"> | string
+    telegram?: StringFilter<"contact"> | string
     linkedIn?: StringFilter<"contact"> | string
-    phone?: BigIntFilter<"contact"> | bigint | number
+    phone?: StringFilter<"contact"> | string
     email?: StringFilter<"contact"> | string
     cv?: StringFilter<"contact"> | string
     website?: StringFilter<"contact"> | string
     github?: StringFilter<"contact"> | string
+    codewars?: StringFilter<"contact"> | string
   }
 
   export type contactOrderByWithRelationInput = {
@@ -7967,6 +7956,7 @@ export namespace Prisma {
     cv?: SortOrder
     website?: SortOrder
     github?: SortOrder
+    codewars?: SortOrder
   }
 
   export type contactWhereUniqueInput = Prisma.AtLeast<{
@@ -7974,14 +7964,15 @@ export namespace Prisma {
     AND?: contactWhereInput | contactWhereInput[]
     OR?: contactWhereInput[]
     NOT?: contactWhereInput | contactWhereInput[]
-    whatsApp?: BigIntFilter<"contact"> | bigint | number
-    telegram?: BigIntFilter<"contact"> | bigint | number
+    whatsApp?: StringFilter<"contact"> | string
+    telegram?: StringFilter<"contact"> | string
     linkedIn?: StringFilter<"contact"> | string
-    phone?: BigIntFilter<"contact"> | bigint | number
+    phone?: StringFilter<"contact"> | string
     email?: StringFilter<"contact"> | string
     cv?: StringFilter<"contact"> | string
     website?: StringFilter<"contact"> | string
     github?: StringFilter<"contact"> | string
+    codewars?: StringFilter<"contact"> | string
   }, "id">
 
   export type contactOrderByWithAggregationInput = {
@@ -7994,6 +7985,7 @@ export namespace Prisma {
     cv?: SortOrder
     website?: SortOrder
     github?: SortOrder
+    codewars?: SortOrder
     _count?: contactCountOrderByAggregateInput
     _avg?: contactAvgOrderByAggregateInput
     _max?: contactMaxOrderByAggregateInput
@@ -8006,14 +7998,15 @@ export namespace Prisma {
     OR?: contactScalarWhereWithAggregatesInput[]
     NOT?: contactScalarWhereWithAggregatesInput | contactScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"contact"> | number
-    whatsApp?: BigIntWithAggregatesFilter<"contact"> | bigint | number
-    telegram?: BigIntWithAggregatesFilter<"contact"> | bigint | number
+    whatsApp?: StringWithAggregatesFilter<"contact"> | string
+    telegram?: StringWithAggregatesFilter<"contact"> | string
     linkedIn?: StringWithAggregatesFilter<"contact"> | string
-    phone?: BigIntWithAggregatesFilter<"contact"> | bigint | number
+    phone?: StringWithAggregatesFilter<"contact"> | string
     email?: StringWithAggregatesFilter<"contact"> | string
     cv?: StringWithAggregatesFilter<"contact"> | string
     website?: StringWithAggregatesFilter<"contact"> | string
     github?: StringWithAggregatesFilter<"contact"> | string
+    codewars?: StringWithAggregatesFilter<"contact"> | string
   }
 
   export type feedbacksWhereInput = {
@@ -8352,84 +8345,91 @@ export namespace Prisma {
   }
 
   export type contactCreateInput = {
-    whatsApp: bigint | number
-    telegram: bigint | number
+    whatsApp: string
+    telegram: string
     linkedIn: string
-    phone: bigint | number
+    phone: string
     email: string
     cv: string
     website: string
     github: string
+    codewars?: string
   }
 
   export type contactUncheckedCreateInput = {
     id?: number
-    whatsApp: bigint | number
-    telegram: bigint | number
+    whatsApp: string
+    telegram: string
     linkedIn: string
-    phone: bigint | number
+    phone: string
     email: string
     cv: string
     website: string
     github: string
+    codewars?: string
   }
 
   export type contactUpdateInput = {
-    whatsApp?: BigIntFieldUpdateOperationsInput | bigint | number
-    telegram?: BigIntFieldUpdateOperationsInput | bigint | number
+    whatsApp?: StringFieldUpdateOperationsInput | string
+    telegram?: StringFieldUpdateOperationsInput | string
     linkedIn?: StringFieldUpdateOperationsInput | string
-    phone?: BigIntFieldUpdateOperationsInput | bigint | number
+    phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     cv?: StringFieldUpdateOperationsInput | string
     website?: StringFieldUpdateOperationsInput | string
     github?: StringFieldUpdateOperationsInput | string
+    codewars?: StringFieldUpdateOperationsInput | string
   }
 
   export type contactUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    whatsApp?: BigIntFieldUpdateOperationsInput | bigint | number
-    telegram?: BigIntFieldUpdateOperationsInput | bigint | number
+    whatsApp?: StringFieldUpdateOperationsInput | string
+    telegram?: StringFieldUpdateOperationsInput | string
     linkedIn?: StringFieldUpdateOperationsInput | string
-    phone?: BigIntFieldUpdateOperationsInput | bigint | number
+    phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     cv?: StringFieldUpdateOperationsInput | string
     website?: StringFieldUpdateOperationsInput | string
     github?: StringFieldUpdateOperationsInput | string
+    codewars?: StringFieldUpdateOperationsInput | string
   }
 
   export type contactCreateManyInput = {
     id?: number
-    whatsApp: bigint | number
-    telegram: bigint | number
+    whatsApp: string
+    telegram: string
     linkedIn: string
-    phone: bigint | number
+    phone: string
     email: string
     cv: string
     website: string
     github: string
+    codewars?: string
   }
 
   export type contactUpdateManyMutationInput = {
-    whatsApp?: BigIntFieldUpdateOperationsInput | bigint | number
-    telegram?: BigIntFieldUpdateOperationsInput | bigint | number
+    whatsApp?: StringFieldUpdateOperationsInput | string
+    telegram?: StringFieldUpdateOperationsInput | string
     linkedIn?: StringFieldUpdateOperationsInput | string
-    phone?: BigIntFieldUpdateOperationsInput | bigint | number
+    phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     cv?: StringFieldUpdateOperationsInput | string
     website?: StringFieldUpdateOperationsInput | string
     github?: StringFieldUpdateOperationsInput | string
+    codewars?: StringFieldUpdateOperationsInput | string
   }
 
   export type contactUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    whatsApp?: BigIntFieldUpdateOperationsInput | bigint | number
-    telegram?: BigIntFieldUpdateOperationsInput | bigint | number
+    whatsApp?: StringFieldUpdateOperationsInput | string
+    telegram?: StringFieldUpdateOperationsInput | string
     linkedIn?: StringFieldUpdateOperationsInput | string
-    phone?: BigIntFieldUpdateOperationsInput | bigint | number
+    phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     cv?: StringFieldUpdateOperationsInput | string
     website?: StringFieldUpdateOperationsInput | string
     github?: StringFieldUpdateOperationsInput | string
+    codewars?: StringFieldUpdateOperationsInput | string
   }
 
   export type feedbacksCreateInput = {
@@ -8799,17 +8799,6 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type BigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
-  }
-
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -8835,13 +8824,11 @@ export namespace Prisma {
     cv?: SortOrder
     website?: SortOrder
     github?: SortOrder
+    codewars?: SortOrder
   }
 
   export type contactAvgOrderByAggregateInput = {
     id?: SortOrder
-    whatsApp?: SortOrder
-    telegram?: SortOrder
-    phone?: SortOrder
   }
 
   export type contactMaxOrderByAggregateInput = {
@@ -8854,6 +8841,7 @@ export namespace Prisma {
     cv?: SortOrder
     website?: SortOrder
     github?: SortOrder
+    codewars?: SortOrder
   }
 
   export type contactMinOrderByAggregateInput = {
@@ -8866,13 +8854,11 @@ export namespace Prisma {
     cv?: SortOrder
     website?: SortOrder
     github?: SortOrder
+    codewars?: SortOrder
   }
 
   export type contactSumOrderByAggregateInput = {
     id?: SortOrder
-    whatsApp?: SortOrder
-    telegram?: SortOrder
-    phone?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -8889,22 +8875,6 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -9193,14 +9163,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type BigIntFieldUpdateOperationsInput = {
-    set?: bigint | number
-    increment?: bigint | number
-    decrement?: bigint | number
-    multiply?: bigint | number
-    divide?: bigint | number
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -9230,17 +9192,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type NestedBigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -9282,22 +9233,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {

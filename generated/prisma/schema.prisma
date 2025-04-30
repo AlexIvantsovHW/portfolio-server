@@ -10,14 +10,15 @@ datasource db {
 
 model contact {
   id       Int    @id @default(autoincrement())
-  whatsApp BigInt
-  telegram BigInt
+  whatsApp String
+  telegram String
   linkedIn String
-  phone    BigInt
+  phone    String
   email    String
   cv       String
   website  String
   github   String
+  codewars String @default("https://codewars.com/user")
 }
 
 model feedbacks {

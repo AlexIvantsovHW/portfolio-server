@@ -126,7 +126,8 @@ exports.Prisma.ContactScalarFieldEnum = {
   email: 'email',
   cv: 'cv',
   website: 'website',
-  github: 'github'
+  github: 'github',
+  codewars: 'codewars'
 };
 
 exports.Prisma.FeedbacksScalarFieldEnum = {
