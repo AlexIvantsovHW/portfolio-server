@@ -1,13 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { CreateContactDto } from './dto/create-contact.dto';
 import { UpdateContactDto } from './dto/update-contact.dto';
-import { ContactRepository } from './contact.repository';
+//import { ContactRepository } from './contact.repository';
 import { ContactEntity } from './entities/contact.entity';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class ContactService {
-  constructor(private readonly contactRepository: ContactRepository) {}
-  create(createContactDto: CreateContactDto) {
+    constructor(private prisma: PrismaService) {}
+    async findAll() {
+      return this.prisma.contact.findMany();  // Используем Prisma для запроса
+    }
+  //constructor(private readonly contactRepository: ContactRepository) {}
+/*   create(createContactDto: CreateContactDto) {
     return this.contactRepository.createContact(createContactDto);
   }
 
@@ -25,5 +30,5 @@ export class ContactService {
 
   remove(id: number) {
     return `This action removes a #${id} contact`;
-  }
+  } */
 }

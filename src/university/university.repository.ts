@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+/* import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UniversityEntity } from './entities/university.entity';
@@ -13,7 +13,7 @@ export class UniversityRepository {
     console.log('inside repo');
     return this.repo.find();
   }
-  /*   findOneById(id: number) {
+   findOneById(id: number) {
     const targetUniversityEntity = universities.find(
       (UniversityEntity) => UniversityEntity.id === id,
     );
@@ -47,5 +47,6 @@ export class UniversityRepository {
     );
     universities.splice(targetIdx, 1, UniversityEntity);
     return universities.find((UniversityEntity) => (UniversityEntity.id = id));
-  } */
+  } 
 }
+ */

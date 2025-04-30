@@ -3,11 +3,17 @@ import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { ProjectEntity } from './entities/project.entity';
 import { ProjectRepository } from './projects.repository';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class ProjectsService {
-  constructor(private readonly projectsRepository: ProjectRepository) {}
-  create(createProjectDto: CreateProjectDto) {
+    constructor(private prisma: PrismaService) {}
+  
+  async findAll() {
+    return this.prisma.projects.findMany();  // Используем Prisma для запроса
+  }
+  //constructor(private readonly projectsRepository: ProjectRepository) {}
+  /* create(createProjectDto: CreateProjectDto) {
     return 'This action adds a new project';
   }
 
@@ -25,5 +31,5 @@ export class ProjectsService {
 
   remove(id: number) {
     return `This action removes a #${id} project`;
-  }
+  } */
 }

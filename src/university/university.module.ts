@@ -3,11 +3,12 @@ import { UniversityService } from './university.service';
 import { UniversityController } from './university.controller';
 import { UniversityEntity } from './entities/university.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UniversityRepository } from './university.repository';
+import { PrismaModule } from 'src/prisma/prisma.module';
+//import { UniversityRepository } from './university.repository';
 @Module({
   controllers: [UniversityController],
-  providers: [UniversityService, UniversityRepository],
-  imports: [TypeOrmModule.forFeature([UniversityEntity])],
+  providers: [UniversityService, /* UniversityRepository */],
+  imports: [PrismaModule/* TypeOrmModule.forFeature([UniversityEntity]) */],
   /*  imports: [
     ConfigModule.forRoot({
       envFilePath: `./.env`,

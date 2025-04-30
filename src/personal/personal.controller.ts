@@ -7,16 +7,16 @@ import { UpdatePersonalDto } from './dto/update-personal.dto';
 export class PersonalController {
   constructor(private readonly personalService: PersonalService) {}
 
-  @Post()
+ /*  @Post()
   create(@Body() createPersonalDto: CreatePersonalDto) {
     return this.personalService.create(createPersonalDto);
-  }
+  } */
 
   @Get()
   findAll() {
     return this.personalService.findAll();
   }
-
+/* 
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.personalService.findOne(+id);
@@ -30,5 +30,5 @@ export class PersonalController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.personalService.remove(+id);
-  }
+  } */
 }

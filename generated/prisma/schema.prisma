@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model contact {
+  id       Int    @id @default(autoincrement())
+  whatsApp BigInt
+  telegram BigInt
+  linkedIn String
+  phone    BigInt
+  email    String
+  cv       String
+  website  String
+  github   String
+}
+
+model feedbacks {
+  id           Int      @id @default(autoincrement())
+  name         String
+  date         DateTime @db.Date
+  description  String
+  position     String
+  companyTitle String
+  logo         String
+}
+
+model jobs {
+  id           Int    @id @default(autoincrement())
+  software_id  Int
+  endAt        String @db.VarChar
+  companyTitle String @db.VarChar
+  startAt      String @db.VarChar
+  description  String @db.VarChar
+  jobTitle     String @db.VarChar
+}
+
+model personal {
+  id            Int    @id @default(autoincrement())
+  username      String
+  surname       String
+  age           Int
+  city          String
+  country       String
+  yearExperince Int
+  description   String
+}
+
+model projects {
+  id          Int      @id @default(autoincrement())
+  title       String
+  startAt     DateTime @db.Date
+  endAt       DateTime @db.Date
+  description String
+  link        String
+  logo        String
+}
+
+model universities {
+  id           Int     @id @default(autoincrement())
+  companyTitle String? @db.VarChar
+  companyLogo  String? @db.VarChar
+  startAt      String? @db.VarChar
+  endAt        String? @db.VarChar
+  title        String? @db.VarChar
+  link         String? @db.VarChar
+  certificate  String? @db.VarChar
+  description  String? @db.VarChar
+}

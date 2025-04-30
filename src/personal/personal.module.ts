@@ -4,11 +4,12 @@ import { PersonalController } from './personal.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PersonalEntity } from './entities/personal.entity';
 import { PersonalRepository } from './personal.repository';
+import { PrismaModule } from 'src/prisma/prisma.module';
 
 @Module({
   controllers: [PersonalController],
-  providers: [PersonalService, PersonalRepository],
-  imports: [TypeOrmModule.forFeature([PersonalEntity])],
+  providers: [PersonalService,/*  PersonalRepository */],
+  imports: [PrismaModule/* TypeOrmModule.forFeature([PersonalEntity]) */],
   exports: [PersonalService],
 })
 export class PersonalModule {}

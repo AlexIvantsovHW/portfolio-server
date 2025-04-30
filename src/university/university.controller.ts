@@ -22,7 +22,7 @@ export class UniversityController {
   } */
 
   @Get()
-  findAll(): Promise<UniversityEntity[]> {
+  findAll() {
     return this.universityService.findAll();
   }
   /* 

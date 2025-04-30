@@ -15,16 +15,16 @@ import { UpdateContactDto } from './dto/update-contact.dto';
 export class ContactController {
   constructor(private readonly contactService: ContactService) {}
 
-  @Post()
+/*   @Post()
   create(@Body() createContactDto: CreateContactDto) {
     return this.contactService.create(createContactDto);
-  }
+  } */
 
   @Get()
   findAll() {
     return this.contactService.findAll();
   }
-
+/* 
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.contactService.findOne(+id);
@@ -38,5 +38,5 @@ export class ContactController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.contactService.remove(+id);
-  }
+  } */
 }

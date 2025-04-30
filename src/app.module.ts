@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+/* import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { JobsModule } from './jobs/jobs.module';
@@ -34,5 +34,33 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   ],
   controllers: [AppController],
   providers: [AppService],
+})
+export class AppModule {}
+ */import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { JobsModule } from './jobs/jobs.module';
+import { UniversityModule } from './university/university.module';
+import { ProjectsModule } from './projects/projects.module';
+import { FeedbacksModule } from './feedbacks/feedbacks.module';
+import { PersonalModule } from './personal/personal.module';
+import { ContactModule } from './contact/contact.module';
+import { ConfigModule } from '@nestjs/config';
+import { PrismaService } from './prisma/prisma.service';  // Импортируем PrismaService
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    JobsModule,
+    UniversityModule,
+    ProjectsModule,
+    FeedbacksModule,
+    PersonalModule,
+    ContactModule,
+  ],
+  controllers: [AppController],
+  providers: [AppService, PrismaService],  // Добавляем PrismaService в providers
 })
 export class AppModule {}

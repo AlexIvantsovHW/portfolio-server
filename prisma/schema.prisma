@@ -17,6 +17,7 @@ model contact {
   email    String
   cv       String
   website  String
+  github   String
 }
 
 model feedbacks {

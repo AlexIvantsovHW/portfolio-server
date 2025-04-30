@@ -9,11 +9,11 @@ export class JobsController {
 
   @Get()
   findAll(): Promise<JobEntity[]> {
-    return this.jobsService.findAllJobs();
+    return this.jobsService.findAll();
   }
 
-  @Post()
+/*   @Post()
   create(@Body(new ValidationPipe()) createJobDto: CreateJobDto) {
     return this.jobsService.createJob(createJobDto);
-  }
+  } */
 }

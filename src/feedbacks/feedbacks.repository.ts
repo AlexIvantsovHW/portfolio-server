@@ -1,4 +1,4 @@
-import { InjectRepository } from '@nestjs/typeorm';
+/* import { InjectRepository } from '@nestjs/typeorm';
 import { FeedbackEnitiy } from './entities/feedback.entity';
 import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
@@ -19,3 +19,4 @@ export class FeedbacksRepository {
     return this.repo.save(feedback);
   }
 }
+ */

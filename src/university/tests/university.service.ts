@@ -1,9 +1,9 @@
-import { Test, TestingModule } from '@nestjs/testing';
+/* import { Test, TestingModule } from '@nestjs/testing';
 import { UniversityService } from '../university.service';
 
 import { UniversityRepository } from '../university.repository';
-//import { University } from '../entities/university.entity';
-//import { universities } from '../university-data';
+import { University } from '../entities/university.entity';
+import { universities } from '../university-data';
 
 describe('UniversityService', () => {
   let service: UniversityService;
@@ -15,7 +15,7 @@ describe('UniversityService', () => {
 
     service = module.get<UniversityService>(UniversityService);
   });
-  /*   const createUniversity :University = {
+   const createUniversity :University = {
     companyTitle: 'National Research Tomsk Polytechnic University',
     title: 'Bachelor degree',
     link: 'www.itransition.com',
@@ -24,12 +24,12 @@ describe('UniversityService', () => {
     description: 'Power and Steam Engineering',
     startAt: '01.01.2012',
     endAt: '01.01.2016',
-  }; */
+  }; 
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
 
-  /*   it('should create a new university', () => {
+     it('should create a new university', () => {
     expect(service.create(createUniversity)).toBe(
       universities[universities.length - 1],
     );
@@ -70,5 +70,6 @@ describe('UniversityService', () => {
   });
   it('should  not find university with  id equals 9999', () => {
     expect(service.findOne(9999) === University with id:9999 doesn't exist in DB").toBe(true);
-  }); */
+  }); 
 });
+ */
