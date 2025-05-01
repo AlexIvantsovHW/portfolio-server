@@ -19,7 +19,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   app.use(cookieParser());
   app.enableCors({
-    origin: ['http://localhost:3000', 'http://31.128.48.25:3000'],
+    origin: ['http://localhost:3000', 'http://31.128.48.25:3000','https://aleks-ivantsov.com'],
     credentials: true,
     exposedHeaders: 'set-cookie',
   });
