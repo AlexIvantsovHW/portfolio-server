@@ -24,6 +24,15 @@ export class ProjectsController {
   findAll() {
     return this.projectsService.findAll();
   }
+  @Get(':id')
+  findOne(@Param('id')id:string){
+    return this.projectsService.findOne(+id)
+  }
+  @Post()
+  create(@Body() createProjectDto:CreateProjectDto){
+    console.log(createProjectDto)
+    return this.projectsService.create(createProjectDto)
+  }
 
  /*  @Get(':id')
   findOne(@Param('id') id: string) {

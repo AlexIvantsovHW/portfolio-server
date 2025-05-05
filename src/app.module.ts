@@ -46,7 +46,7 @@ import { FeedbacksModule } from './feedbacks/feedbacks.module';
 import { PersonalModule } from './personal/personal.module';
 import { ContactModule } from './contact/contact.module';
 import { ConfigModule } from '@nestjs/config';
-import { PrismaService } from './prisma/prisma.service';  // Импортируем PrismaService
+import { PrismaService } from './prisma/prisma.service'; 
 
 @Module({
   imports: [
@@ -61,6 +61,6 @@ import { PrismaService } from './prisma/prisma.service';  // Импортиру�
     ContactModule,
   ],
   controllers: [AppController],
-  providers: [AppService, PrismaService],  // Добавляем PrismaService в providers
+  providers: [AppService, PrismaService], 
 })
 export class AppModule {}

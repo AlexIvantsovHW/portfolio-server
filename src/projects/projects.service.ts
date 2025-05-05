@@ -12,6 +12,18 @@ export class ProjectsService {
   async findAll() {
     return this.prisma.projects.findMany();  // Используем Prisma для запроса
   }
+  async findOne(id:number){
+    return this.prisma.projects.findUnique({where:{id:id}})
+  }
+  async create(createProjectDto:CreateProjectDto) {
+    // Приводим CreateProjectDto к нужному формату
+
+    return this.prisma.projects.create({
+      data: {
+      ...createProjectDto
+      },
+    });
+  }
   //constructor(private readonly projectsRepository: ProjectRepository) {}
   /* create(createProjectDto: CreateProjectDto) {
     return 'This action adds a new project';
