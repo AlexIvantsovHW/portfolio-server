@@ -24,8 +24,12 @@ export class ProjectsService {
   }
 async delete(id:number){
   const project=await this.prisma.projects.findUnique({where:{id}})
-  console.log(project)
   return !project||project===null?{message:`Project with id ${id} doesn't exist in DB`}:this.prisma.projects.delete({where:{id}})
+
+}
+async update(id:number,updateProjectDto: UpdateProjectDto){
+  const project=await this.prisma.projects.findUnique({where:{id}})
+  return !project||project===null?{message:`Project with id ${id} doesn't exist in DB`}:this.prisma.projects.update({where:{id},data:updateProjectDto})
 
 }
   

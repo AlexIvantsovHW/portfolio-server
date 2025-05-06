@@ -37,6 +37,10 @@ export class ProjectsController {
   delete(@Param('id')id:string){
     return this.projectsService.delete(+id)
   }
+  @Patch(':id')
+  update(@Param('id')id:string,@Body()updateProjectDto:CreateProjectDto){
+    return this.projectsService.update(+id,updateProjectDto)
+  }
   
 
  /*  @Get(':id')
