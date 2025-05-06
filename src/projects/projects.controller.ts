@@ -33,6 +33,11 @@ export class ProjectsController {
     console.log(createProjectDto)
     return this.projectsService.create(createProjectDto)
   }
+  @Delete(':id')
+  delete(@Param('id')id:string){
+    return this.projectsService.delete(+id)
+  }
+  
 
  /*  @Get(':id')
   findOne(@Param('id') id: string) {

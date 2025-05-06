@@ -16,15 +16,18 @@ export class ProjectsService {
     return this.prisma.projects.findUnique({where:{id:id}})
   }
   async create(createProjectDto:CreateProjectDto) {
-    // Приводим CreateProjectDto к нужному формату
-
     return this.prisma.projects.create({
       data: {
       ...createProjectDto
       },
     });
   }
+async delete(id:number){
+  const project=await this.prisma.projects.findUnique({where:{id}})
+  console.log(project)
+  return !project||project===null?{message:`Project with id ${id} doesn't exist in DB`}:this.prisma.projects.delete({where:{id}})
 
+}
   
   //constructor(private readonly projectsRepository: ProjectRepository) {}
   /* create(createProjectDto: CreateProjectDto) {
