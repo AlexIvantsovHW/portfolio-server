@@ -1,15 +1,5 @@
-import {
-  Controller,
-  Get,
-  /* Post,
-  Body,
-  Patch,
-  Param,
-  Delete, */
-} from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { UniversityService } from './university.service';
-//import { CreateUniversityDto } from './dto/create-university.dto';
-//import { UniversitiesType } from './model/type';
 import { UniversityEntity } from './entities/university.entity';
 
 @Controller('university')
@@ -22,7 +12,7 @@ export class UniversityController {
   } */
 
   @Get()
-  findAll() {
+  findAll(): Promise<UniversityEntity[]> {
     return this.universityService.findAll();
   }
   /* 

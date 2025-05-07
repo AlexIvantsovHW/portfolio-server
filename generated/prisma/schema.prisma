@@ -18,7 +18,7 @@ model contact {
   email    String
   cv       String
   website  String
-  github   String
+  github   String @default("https://github.com/unknown")
   codewars String @default("https://codewars.com/user")
 }
 
@@ -64,13 +64,13 @@ model projects {
 }
 
 model universities {
-  id           Int     @id @default(autoincrement())
-  companyTitle String? @db.VarChar
-  companyLogo  String? @db.VarChar
-  startAt      String? @db.VarChar
-  endAt        String? @db.VarChar
-  title        String? @db.VarChar
-  link         String? @db.VarChar
-  certificate  String? @db.VarChar
-  description  String? @db.VarChar
+  id           Int    @id @default(autoincrement())
+  companyTitle String @db.VarChar
+  companyLogo  String @db.VarChar
+  startAt      String @db.VarChar
+  endAt        String @db.VarChar
+  title        String @db.VarChar
+  link         String @db.VarChar
+  certificate  String @db.VarChar
+  description  String @db.VarChar
 }
