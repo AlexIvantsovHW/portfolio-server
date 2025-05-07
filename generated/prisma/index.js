@@ -218,12 +218,11 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": null
+        "value": "postgresql://alex:10032018@localhost:5432/portfolio_db?schema=public"
       }
     }
   },
