@@ -6,27 +6,27 @@ export class UniversityEntity implements IUniversity {
   @PrimaryGeneratedColumn({ type: 'int' })
   id: number;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   companyTitle: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   title: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   link: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   companyLogo: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   certificate: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   description: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   startAt: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   endAt: string;
 }

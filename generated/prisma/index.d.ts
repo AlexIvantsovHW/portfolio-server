@@ -6854,14 +6854,14 @@ export namespace Prisma {
 
   export type UniversitiesGroupByOutputType = {
     id: number
-    companyTitle: string | null
-    companyLogo: string | null
-    startAt: string | null
-    endAt: string | null
-    title: string | null
-    link: string | null
-    certificate: string | null
-    description: string | null
+    companyTitle: string
+    companyLogo: string
+    startAt: string
+    endAt: string
+    title: string
+    link: string
+    certificate: string
+    description: string
     _count: UniversitiesCountAggregateOutputType | null
     _avg: UniversitiesAvgAggregateOutputType | null
     _sum: UniversitiesSumAggregateOutputType | null
@@ -6938,14 +6938,14 @@ export namespace Prisma {
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      companyTitle: string | null
-      companyLogo: string | null
-      startAt: string | null
-      endAt: string | null
-      title: string | null
-      link: string | null
-      certificate: string | null
-      description: string | null
+      companyTitle: string
+      companyLogo: string
+      startAt: string
+      endAt: string
+      title: string
+      link: string
+      certificate: string
+      description: string
     }, ExtArgs["result"]["universities"]>
     composites: {}
   }
@@ -7572,7 +7572,7 @@ export namespace Prisma {
     /**
      * The data needed to create a universities.
      */
-    data?: XOR<universitiesCreateInput, universitiesUncheckedCreateInput>
+    data: XOR<universitiesCreateInput, universitiesUncheckedCreateInput>
   }
 
   /**
@@ -7856,14 +7856,6 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
-
-  export const NullsOrder: {
-    first: 'first',
-    last: 'last'
-  };
-
-  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -8275,26 +8267,26 @@ export namespace Prisma {
     OR?: universitiesWhereInput[]
     NOT?: universitiesWhereInput | universitiesWhereInput[]
     id?: IntFilter<"universities"> | number
-    companyTitle?: StringNullableFilter<"universities"> | string | null
-    companyLogo?: StringNullableFilter<"universities"> | string | null
-    startAt?: StringNullableFilter<"universities"> | string | null
-    endAt?: StringNullableFilter<"universities"> | string | null
-    title?: StringNullableFilter<"universities"> | string | null
-    link?: StringNullableFilter<"universities"> | string | null
-    certificate?: StringNullableFilter<"universities"> | string | null
-    description?: StringNullableFilter<"universities"> | string | null
+    companyTitle?: StringFilter<"universities"> | string
+    companyLogo?: StringFilter<"universities"> | string
+    startAt?: StringFilter<"universities"> | string
+    endAt?: StringFilter<"universities"> | string
+    title?: StringFilter<"universities"> | string
+    link?: StringFilter<"universities"> | string
+    certificate?: StringFilter<"universities"> | string
+    description?: StringFilter<"universities"> | string
   }
 
   export type universitiesOrderByWithRelationInput = {
     id?: SortOrder
-    companyTitle?: SortOrderInput | SortOrder
-    companyLogo?: SortOrderInput | SortOrder
-    startAt?: SortOrderInput | SortOrder
-    endAt?: SortOrderInput | SortOrder
-    title?: SortOrderInput | SortOrder
-    link?: SortOrderInput | SortOrder
-    certificate?: SortOrderInput | SortOrder
-    description?: SortOrderInput | SortOrder
+    companyTitle?: SortOrder
+    companyLogo?: SortOrder
+    startAt?: SortOrder
+    endAt?: SortOrder
+    title?: SortOrder
+    link?: SortOrder
+    certificate?: SortOrder
+    description?: SortOrder
   }
 
   export type universitiesWhereUniqueInput = Prisma.AtLeast<{
@@ -8302,26 +8294,26 @@ export namespace Prisma {
     AND?: universitiesWhereInput | universitiesWhereInput[]
     OR?: universitiesWhereInput[]
     NOT?: universitiesWhereInput | universitiesWhereInput[]
-    companyTitle?: StringNullableFilter<"universities"> | string | null
-    companyLogo?: StringNullableFilter<"universities"> | string | null
-    startAt?: StringNullableFilter<"universities"> | string | null
-    endAt?: StringNullableFilter<"universities"> | string | null
-    title?: StringNullableFilter<"universities"> | string | null
-    link?: StringNullableFilter<"universities"> | string | null
-    certificate?: StringNullableFilter<"universities"> | string | null
-    description?: StringNullableFilter<"universities"> | string | null
+    companyTitle?: StringFilter<"universities"> | string
+    companyLogo?: StringFilter<"universities"> | string
+    startAt?: StringFilter<"universities"> | string
+    endAt?: StringFilter<"universities"> | string
+    title?: StringFilter<"universities"> | string
+    link?: StringFilter<"universities"> | string
+    certificate?: StringFilter<"universities"> | string
+    description?: StringFilter<"universities"> | string
   }, "id">
 
   export type universitiesOrderByWithAggregationInput = {
     id?: SortOrder
-    companyTitle?: SortOrderInput | SortOrder
-    companyLogo?: SortOrderInput | SortOrder
-    startAt?: SortOrderInput | SortOrder
-    endAt?: SortOrderInput | SortOrder
-    title?: SortOrderInput | SortOrder
-    link?: SortOrderInput | SortOrder
-    certificate?: SortOrderInput | SortOrder
-    description?: SortOrderInput | SortOrder
+    companyTitle?: SortOrder
+    companyLogo?: SortOrder
+    startAt?: SortOrder
+    endAt?: SortOrder
+    title?: SortOrder
+    link?: SortOrder
+    certificate?: SortOrder
+    description?: SortOrder
     _count?: universitiesCountOrderByAggregateInput
     _avg?: universitiesAvgOrderByAggregateInput
     _max?: universitiesMaxOrderByAggregateInput
@@ -8334,14 +8326,14 @@ export namespace Prisma {
     OR?: universitiesScalarWhereWithAggregatesInput[]
     NOT?: universitiesScalarWhereWithAggregatesInput | universitiesScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"universities"> | number
-    companyTitle?: StringNullableWithAggregatesFilter<"universities"> | string | null
-    companyLogo?: StringNullableWithAggregatesFilter<"universities"> | string | null
-    startAt?: StringNullableWithAggregatesFilter<"universities"> | string | null
-    endAt?: StringNullableWithAggregatesFilter<"universities"> | string | null
-    title?: StringNullableWithAggregatesFilter<"universities"> | string | null
-    link?: StringNullableWithAggregatesFilter<"universities"> | string | null
-    certificate?: StringNullableWithAggregatesFilter<"universities"> | string | null
-    description?: StringNullableWithAggregatesFilter<"universities"> | string | null
+    companyTitle?: StringWithAggregatesFilter<"universities"> | string
+    companyLogo?: StringWithAggregatesFilter<"universities"> | string
+    startAt?: StringWithAggregatesFilter<"universities"> | string
+    endAt?: StringWithAggregatesFilter<"universities"> | string
+    title?: StringWithAggregatesFilter<"universities"> | string
+    link?: StringWithAggregatesFilter<"universities"> | string
+    certificate?: StringWithAggregatesFilter<"universities"> | string
+    description?: StringWithAggregatesFilter<"universities"> | string
   }
 
   export type contactCreateInput = {
@@ -8352,7 +8344,7 @@ export namespace Prisma {
     email: string
     cv: string
     website: string
-    github: string
+    github?: string
     codewars?: string
   }
 
@@ -8365,7 +8357,7 @@ export namespace Prisma {
     email: string
     cv: string
     website: string
-    github: string
+    github?: string
     codewars?: string
   }
 
@@ -8403,7 +8395,7 @@ export namespace Prisma {
     email: string
     cv: string
     website: string
-    github: string
+    github?: string
     codewars?: string
   }
 
@@ -8708,84 +8700,84 @@ export namespace Prisma {
   }
 
   export type universitiesCreateInput = {
-    companyTitle?: string | null
-    companyLogo?: string | null
-    startAt?: string | null
-    endAt?: string | null
-    title?: string | null
-    link?: string | null
-    certificate?: string | null
-    description?: string | null
+    companyTitle: string
+    companyLogo: string
+    startAt: string
+    endAt: string
+    title: string
+    link: string
+    certificate: string
+    description: string
   }
 
   export type universitiesUncheckedCreateInput = {
     id?: number
-    companyTitle?: string | null
-    companyLogo?: string | null
-    startAt?: string | null
-    endAt?: string | null
-    title?: string | null
-    link?: string | null
-    certificate?: string | null
-    description?: string | null
+    companyTitle: string
+    companyLogo: string
+    startAt: string
+    endAt: string
+    title: string
+    link: string
+    certificate: string
+    description: string
   }
 
   export type universitiesUpdateInput = {
-    companyTitle?: NullableStringFieldUpdateOperationsInput | string | null
-    companyLogo?: NullableStringFieldUpdateOperationsInput | string | null
-    startAt?: NullableStringFieldUpdateOperationsInput | string | null
-    endAt?: NullableStringFieldUpdateOperationsInput | string | null
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    link?: NullableStringFieldUpdateOperationsInput | string | null
-    certificate?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    companyTitle?: StringFieldUpdateOperationsInput | string
+    companyLogo?: StringFieldUpdateOperationsInput | string
+    startAt?: StringFieldUpdateOperationsInput | string
+    endAt?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    link?: StringFieldUpdateOperationsInput | string
+    certificate?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
   }
 
   export type universitiesUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    companyTitle?: NullableStringFieldUpdateOperationsInput | string | null
-    companyLogo?: NullableStringFieldUpdateOperationsInput | string | null
-    startAt?: NullableStringFieldUpdateOperationsInput | string | null
-    endAt?: NullableStringFieldUpdateOperationsInput | string | null
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    link?: NullableStringFieldUpdateOperationsInput | string | null
-    certificate?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    companyTitle?: StringFieldUpdateOperationsInput | string
+    companyLogo?: StringFieldUpdateOperationsInput | string
+    startAt?: StringFieldUpdateOperationsInput | string
+    endAt?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    link?: StringFieldUpdateOperationsInput | string
+    certificate?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
   }
 
   export type universitiesCreateManyInput = {
     id?: number
-    companyTitle?: string | null
-    companyLogo?: string | null
-    startAt?: string | null
-    endAt?: string | null
-    title?: string | null
-    link?: string | null
-    certificate?: string | null
-    description?: string | null
+    companyTitle: string
+    companyLogo: string
+    startAt: string
+    endAt: string
+    title: string
+    link: string
+    certificate: string
+    description: string
   }
 
   export type universitiesUpdateManyMutationInput = {
-    companyTitle?: NullableStringFieldUpdateOperationsInput | string | null
-    companyLogo?: NullableStringFieldUpdateOperationsInput | string | null
-    startAt?: NullableStringFieldUpdateOperationsInput | string | null
-    endAt?: NullableStringFieldUpdateOperationsInput | string | null
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    link?: NullableStringFieldUpdateOperationsInput | string | null
-    certificate?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    companyTitle?: StringFieldUpdateOperationsInput | string
+    companyLogo?: StringFieldUpdateOperationsInput | string
+    startAt?: StringFieldUpdateOperationsInput | string
+    endAt?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    link?: StringFieldUpdateOperationsInput | string
+    certificate?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
   }
 
   export type universitiesUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    companyTitle?: NullableStringFieldUpdateOperationsInput | string | null
-    companyLogo?: NullableStringFieldUpdateOperationsInput | string | null
-    startAt?: NullableStringFieldUpdateOperationsInput | string | null
-    endAt?: NullableStringFieldUpdateOperationsInput | string | null
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    link?: NullableStringFieldUpdateOperationsInput | string | null
-    certificate?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    companyTitle?: StringFieldUpdateOperationsInput | string
+    companyLogo?: StringFieldUpdateOperationsInput | string
+    startAt?: StringFieldUpdateOperationsInput | string
+    endAt?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    link?: StringFieldUpdateOperationsInput | string
+    certificate?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -9081,26 +9073,6 @@ export namespace Prisma {
     id?: SortOrder
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
-
   export type universitiesCountOrderByAggregateInput = {
     id?: SortOrder
     companyTitle?: SortOrder
@@ -9145,24 +9117,6 @@ export namespace Prisma {
     id?: SortOrder
   }
 
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -9177,10 +9131,6 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -9275,48 +9225,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
 

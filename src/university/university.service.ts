@@ -7,12 +7,21 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class UniversityService {
   //constructor(private readonly universityRepository: UniversityRepository) {}
 
- /*  findAll(): Promise<UniversityEntity[]> {
+  /*  findAll(): Promise<UniversityEntity[]> {
     return this.universityRepository.getAllUniversities();
   } */
   constructor(private prisma: PrismaService) {}
-  
-    async findAll() {
-      return this.prisma.universities.findMany();  // Используем Prisma для запроса
-    }
+
+  async findAll(): Promise<UniversityEntity[]> {
+    const universities = await this.prisma.universities.findMany();
+    const transferDateUniversities = universities.map((university) => {
+      return {
+        ...university,
+        startAt: university.startAt,
+        endAt: university.endAt,
+      };
+    });
+
+    return transferDateUniversities;
+  }
 }

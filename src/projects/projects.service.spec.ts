@@ -1,4 +1,4 @@
-/* import { Test, TestingModule } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
 import { ProjectsService } from './projects.service';
 
 describe('ProjectsService', () => {
@@ -16,4 +16,3 @@ describe('ProjectsService', () => {
     expect(service).toBeDefined();
   });
 });
- */
