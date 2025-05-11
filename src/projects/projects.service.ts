@@ -25,7 +25,7 @@ export class ProjectsService {
       where: { id: id },
     });
     if (!project) {
-      return { message: `Project with id ${id} doesn't exist in DB` };
+      return { message: `Project with id:${id} doesn't exist in DB` };
     }
     const dateTransformProject = {
       ...project,
