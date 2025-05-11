@@ -35,11 +35,16 @@ export class ProjectsService {
     return dateTransformProject;
   }
   async create(createProjectDto: CreateProjectDto) {
-    return this.prisma.projects.create({
-      data: {
-        ...createProjectDto,
-      },
+    const chechingProject = await this.prisma.projects.findFirst({
+      where: { title: createProjectDto.title },
     });
+    return chechingProject || chechingProject != null
+      ? { message: `Project: ${createProjectDto.title} is existing in DB!` }
+      : this.prisma.projects.create({
+          data: {
+            ...createProjectDto,
+          },
+        });
   }
   async delete(id: number) {
     const project = await this.prisma.projects.findUnique({ where: { id } });

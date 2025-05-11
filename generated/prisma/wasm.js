@@ -183,6 +183,13 @@ exports.Prisma.UniversitiesScalarFieldEnum = {
   description: 'description'
 };
 
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  password: 'password',
+  email: 'email'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -200,7 +207,8 @@ exports.Prisma.ModelName = {
   jobs: 'jobs',
   personal: 'personal',
   projects: 'projects',
-  universities: 'universities'
+  universities: 'universities',
+  user: 'user'
 };
 
 /**
