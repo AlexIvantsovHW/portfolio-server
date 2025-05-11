@@ -1,22 +1,23 @@
-import { IsEmail, IsNotEmpty, IsNumber, IsUrl } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, IsUrl } from 'class-validator';
+import { IContact } from '../module/contact.type';
 
-export class CreateContactDto {
-  @IsNumber()
+export class CreateContactDto implements IContact {
+  @IsString()
   @IsNotEmpty()
-  whatsApp: number;
+  whatsApp: string;
 
-  @IsNumber()
+  @IsString()
   @IsNotEmpty()
-  telegram: number;
+  telegram: string;
 
   @IsUrl()
   @IsNotEmpty()
   @IsNotEmpty()
   linkedIn: string;
 
-  @IsNumber()
+  @IsString()
   @IsNotEmpty()
-  phone: number;
+  phone: string;
 
   @IsEmail()
   @IsNotEmpty()
@@ -29,4 +30,12 @@ export class CreateContactDto {
   @IsUrl()
   @IsNotEmpty()
   website: string;
+
+  @IsUrl()
+  @IsNotEmpty()
+  github: string;
+
+  @IsUrl()
+  @IsNotEmpty()
+  codewars: string;
 }
