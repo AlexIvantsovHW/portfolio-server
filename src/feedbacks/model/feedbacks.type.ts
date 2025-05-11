@@ -7,3 +7,4 @@ export interface IFeedbacks {
   companyTitle: string;
   logo: string;
 }
+export type IFeedback = Omit<IFeedbacks, 'id'>;
