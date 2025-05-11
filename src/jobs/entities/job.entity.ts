@@ -21,12 +21,5 @@ export class JobEntity implements IJobs {
   jobTitle: string;
 
   @Column({ nullable: false, type: 'int' })
-  software_id: number; /*  {
-    db: { title: string; img: string }[];
-    API: { title: string; img: string }[];
-    fronentd: { title: string; img: string }[];
-    backend: { title: string; img: string }[];
-    UI: { title: string; img: string }[];
-    others: { title: string; img: string }[];
-  }; */
+  software_id: number;
 }
