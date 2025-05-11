@@ -21,7 +21,7 @@ export class ProjectsService {
     });
     return dateTransformProjects;
   }
-  async findOne(id: number): Promise<IProjects | { message: string }> {
+  async findOne(id: number): Promise<IProjects | MessageDto> {
     const project = await this.prisma.projects.findUnique({
       where: { id: id },
     });
@@ -59,16 +59,32 @@ export class ProjectsService {
 
     return transformedData;
   }
-  async delete(id: number) {
+  async delete(id: number): Promise<CreateProjectDto | MessageDto> {
     const project = await this.prisma.projects.findUnique({ where: { id } });
-    return !project || project === null
-      ? { message: `Project with id ${id} doesn't exist in DB` }
-      : this.prisma.projects.delete({ where: { id } });
+    if (!project || project === null)
+      return { message: `Project with id ${id} doesn't exist in DB` };
+    const deletedProject = await this.prisma.projects.delete({ where: { id } });
+    return {
+      ...deletedProject,
+      startAt: deletedProject.startAt.toString(),
+      endAt: deletedProject.endAt.toString(),
+    };
   }
-  async update(id: number, updateProjectDto: UpdateProjectDto) {
+  async update(
+    id: number,
+    updateProjectDto: UpdateProjectDto,
+  ): Promise<UpdateProjectDto | MessageDto> {
     const project = await this.prisma.projects.findUnique({ where: { id } });
-    return !project || project === null
-      ? { message: `Project with id ${id} doesn't exist in DB` }
-      : this.prisma.projects.update({ where: { id }, data: updateProjectDto });
+    if (!project || project === null)
+      return { message: `Project with id ${id} doesn't exist in DB` };
+    const updatedProject = await this.prisma.projects.update({
+      where: { id },
+      data: updateProjectDto,
+    });
+    return {
+      ...updatedProject,
+      startAt: updatedProject.startAt.toString(),
+      endAt: updatedProject.endAt.toString(),
+    };
   }
 }
