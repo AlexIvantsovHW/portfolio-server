@@ -4,6 +4,7 @@ import { UpdateProjectDto } from './dto/update-project.dto';
 import { ProjectEntity } from './entities/project.entity';
 import { IProjects } from './module/projects.interface';
 import { PrismaService } from '../prisma/prisma.service';
+import { MessageDto } from './dto/message.dto';
 
 @Injectable()
 export class ProjectsService {
@@ -34,17 +35,29 @@ export class ProjectsService {
     };
     return dateTransformProject;
   }
-  async create(createProjectDto: CreateProjectDto) {
+  async create(
+    createProjectDto: CreateProjectDto,
+  ): Promise<ProjectEntity | MessageDto> {
     const chechingProject = await this.prisma.projects.findFirst({
       where: { title: createProjectDto.title },
     });
-    return chechingProject || chechingProject != null
-      ? { message: `Project: ${createProjectDto.title} is existing in DB!` }
-      : this.prisma.projects.create({
-          data: {
-            ...createProjectDto,
-          },
-        });
+    if (chechingProject || chechingProject != null)
+      return {
+        message: `Project: ${createProjectDto.title} is existing in DB!`,
+      };
+
+    const newProject = await this.prisma.projects.create({
+      data: {
+        ...createProjectDto,
+      },
+    });
+    const transformedData = {
+      ...newProject,
+      startAt: newProject.startAt.toString(),
+      endAt: newProject.endAt.toString(),
+    };
+
+    return transformedData;
   }
   async delete(id: number) {
     const project = await this.prisma.projects.findUnique({ where: { id } });
