@@ -1,34 +1,57 @@
 import { Injectable } from '@nestjs/common';
 import { CreateFeedbackDto } from './dto/create-feedback.dto';
 import { UpdateFeedbackDto } from './dto/update-feedback.dto';
-//import { FeedbacksRepository } from './feedbacks.repository';
 import { FeedbackEnitiy } from './entities/feedback.entity';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { MessageDto } from './dto/message.dto';
 
 @Injectable()
-export class FeedbacksService { constructor(private prisma: PrismaService) {}
-  //constructor(private readonly feedbacksRepository: FeedbacksRepository) {}
-  async findAll() {
-    return this.prisma.jobs.findMany();  // Используем Prisma для запроса
-  }
- 
- /*  create(createFeedbackDto: CreateFeedbackDto) {
-    return this.feedbacksRepository.createFeedback(createFeedbackDto);
-  }
+export class FeedbacksService {
+  constructor(private prisma: PrismaService) {}
 
-  findAll(): Promise<FeedbackEnitiy[]> {
-    return this.feedbacksRepository.getAllFeedbacks();
+  async findAll(): Promise<FeedbackEnitiy[]> {
+    return this.prisma.feedbacks.findMany();
   }
-
-  findOne(id: number) {
-    return `This action returns a #${id} feedback`;
+  async findOne(id: number): Promise<FeedbackEnitiy | MessageDto> {
+    const feedback = await this.prisma.feedbacks.findUnique({ where: { id } });
+    if (!feedback || feedback === null)
+      return { message: `Feedback with id ${id} doesn't exist in DB` };
+    return feedback;
   }
-
-  update(id: number, updateFeedbackDto: UpdateFeedbackDto) {
-    return `This action updates a #${id} feedback`;
+  async update(
+    id: number,
+    updateFeedbackDto: UpdateFeedbackDto,
+  ): Promise<FeedbackEnitiy | MessageDto> {
+    const feedback = await this.prisma.feedbacks.findUnique({ where: { id } });
+    if (!feedback || feedback === null)
+      return { message: `Feedback with id ${id} doesn't exist in DB` };
+    return await this.prisma.feedbacks.update({
+      where: { id },
+      data: { ...updateFeedbackDto },
+    });
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} feedback`;
-  } */
+  async delete(id: number): Promise<FeedbackEnitiy | MessageDto> {
+    const feedback = await this.prisma.feedbacks.findUnique({ where: { id } });
+    if (!feedback || feedback === null)
+      return { message: `Feedback with id ${id} doesn't exist in DB` };
+    return await this.prisma.feedbacks.delete({ where: { id } });
+  }
+  async create(
+    createFeedbackDto: CreateFeedbackDto,
+  ): Promise<CreateFeedbackDto | MessageDto> {
+    const feedback = await this.prisma.feedbacks.findFirst({
+      where: {
+        name: createFeedbackDto.name,
+        date: createFeedbackDto.date,
+        description: createFeedbackDto.description,
+        position: createFeedbackDto.position,
+        companyTitle: createFeedbackDto.companyTitle,
+        logo: createFeedbackDto.logo,
+      },
+    });
+    if (feedback) return { message: `Feedback exists in DB` };
+    return await this.prisma.feedbacks.create({
+      data: { ...createFeedbackDto },
+    });
+  }
 }

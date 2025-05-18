@@ -1,4 +1,4 @@
-export interface IPersonal {
+export type IPersonal = {
   id: number;
   username: string;
   surname: string;
@@ -7,4 +7,5 @@ export interface IPersonal {
   country: string;
   yearExperince: number;
   description: string;
-}
+};
+export type IPerson = Omit<IPersonal, 'id'>;

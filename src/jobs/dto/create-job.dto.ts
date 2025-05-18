@@ -27,16 +27,3 @@ export class CreateJobDto {
   @Min(1)
   readonly software_id: number;
 }
-/*   companyTitle: string;
-  start: string;
-  end: string;
-  description: string;
-  jobTitle: string;
-  software: {
-    db: softwareElementType[];
-    API: softwareElementType[];
-    fronentd: softwareElementType[];
-    backend: softwareElementType[];
-    UI: softwareElementType[];
-    others: softwareElementType[];
-  }; */

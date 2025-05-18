@@ -74,3 +74,9 @@ model universities {
   certificate  String @db.VarChar
   description  String @db.VarChar
 }
+model user {
+  id           Int     @id @default(autoincrement())
+  username      String @db.VarChar
+  password  String @db.VarChar
+  email      String @db.VarChar
+}
