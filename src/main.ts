@@ -19,7 +19,14 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   app.use(cookieParser());
   app.enableCors({
-    origin: ['http://localhost:3000','https://90.156.158.26:3000', 'http://90.156.158.26:3000','https://aleks-ivantsov.com'],
+    origin: [
+      'http://localhost:3000',
+      'https://90.156.158.26:3000',
+      'http://90.156.158.26:3000',
+      'https://aleks-ivantsov.com',
+      'http://localhost:4173',
+      'http://localhost:5173',
+    ],
     credentials: true,
     exposedHeaders: 'set-cookie',
   });
@@ -28,4 +35,3 @@ async function bootstrap() {
   await app.listen(PORT ?? 9000);
 }
 bootstrap();
-
