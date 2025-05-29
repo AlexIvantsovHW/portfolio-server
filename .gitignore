@@ -2,7 +2,7 @@
 /dist
 /node_modules
 /build
-
+nginx.config
 # Logs
 logs
 *.log

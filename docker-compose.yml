@@ -8,7 +8,7 @@ services:
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: postgres://alex:10032018@postgres:5432/portfolio_db?schema=public
+      DATABASE_URL: postgres://alex:10032018@postgres:5432/portfolio_db?sch>
       PORT: 9001
     ports:
       - '8080:9001'
@@ -33,11 +33,12 @@ services:
       - postgres_data:/var/lib/postgresql/data
   client_portfolio:
     build:
-      context: ../client
+      context: ../portfolio-client
       dockerfile: Dockerfile
     ports:
       - '3005:4173'
     env_file:
-      - ../client/.env
+      - ../portfolio-client/.env
+
 volumes:
   postgres_data:
