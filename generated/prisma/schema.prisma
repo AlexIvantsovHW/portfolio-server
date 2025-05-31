@@ -51,6 +51,7 @@ model personal {
   country       String
   yearExperince Int
   description   String
+  avatar        String @default("https://avatar.com")
 }
 
 model projects {
