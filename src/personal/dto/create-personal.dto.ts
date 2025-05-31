@@ -1,4 +1,4 @@
-import { IsNumber, IsString, Length, Min } from 'class-validator';
+import { IsNumber, IsString, IsUrl, Length, Min } from 'class-validator';
 import { IPerson } from '../model/personal.type';
 
 export class CreatePersonalDto implements IPerson {
@@ -39,4 +39,7 @@ export class CreatePersonalDto implements IPerson {
       'Description  should be at least 2 chars and no more than 300 chars',
   })
   readonly description: string;
+
+  @IsUrl({}, { message: 'Link must be a valid URL' })
+  readonly avatar: string;
 }
