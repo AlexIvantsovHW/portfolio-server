@@ -19,4 +19,6 @@ export class PersonalEntity implements IPersonal {
   yearExperince: number;
   @Column({ nullable: false })
   description: string;
+  @Column({ nullable: false })
+  avatar: string;
 }
