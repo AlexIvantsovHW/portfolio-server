@@ -29,7 +29,7 @@ model feedbacks {
   description  String
   position     String
   companyTitle String
-  logo         String
+  logo         String 
 }
 
 model jobs {
@@ -51,6 +51,7 @@ model personal {
   country       String
   yearExperince Int
   description   String
+  avatar        String @default("https://avatar.com") 
 }
 
 model projects {

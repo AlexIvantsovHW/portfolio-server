@@ -4656,6 +4656,7 @@ export namespace Prisma {
     country: string | null
     yearExperince: number | null
     description: string | null
+    avatar: string | null
   }
 
   export type PersonalMaxAggregateOutputType = {
@@ -4667,6 +4668,7 @@ export namespace Prisma {
     country: string | null
     yearExperince: number | null
     description: string | null
+    avatar: string | null
   }
 
   export type PersonalCountAggregateOutputType = {
@@ -4678,6 +4680,7 @@ export namespace Prisma {
     country: number
     yearExperince: number
     description: number
+    avatar: number
     _all: number
   }
 
@@ -4703,6 +4706,7 @@ export namespace Prisma {
     country?: true
     yearExperince?: true
     description?: true
+    avatar?: true
   }
 
   export type PersonalMaxAggregateInputType = {
@@ -4714,6 +4718,7 @@ export namespace Prisma {
     country?: true
     yearExperince?: true
     description?: true
+    avatar?: true
   }
 
   export type PersonalCountAggregateInputType = {
@@ -4725,6 +4730,7 @@ export namespace Prisma {
     country?: true
     yearExperince?: true
     description?: true
+    avatar?: true
     _all?: true
   }
 
@@ -4823,6 +4829,7 @@ export namespace Prisma {
     country: string
     yearExperince: number
     description: string
+    avatar: string
     _count: PersonalCountAggregateOutputType | null
     _avg: PersonalAvgAggregateOutputType | null
     _sum: PersonalSumAggregateOutputType | null
@@ -4853,6 +4860,7 @@ export namespace Prisma {
     country?: boolean
     yearExperince?: boolean
     description?: boolean
+    avatar?: boolean
   }, ExtArgs["result"]["personal"]>
 
   export type personalSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4864,6 +4872,7 @@ export namespace Prisma {
     country?: boolean
     yearExperince?: boolean
     description?: boolean
+    avatar?: boolean
   }, ExtArgs["result"]["personal"]>
 
   export type personalSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4875,6 +4884,7 @@ export namespace Prisma {
     country?: boolean
     yearExperince?: boolean
     description?: boolean
+    avatar?: boolean
   }, ExtArgs["result"]["personal"]>
 
   export type personalSelectScalar = {
@@ -4886,9 +4896,10 @@ export namespace Prisma {
     country?: boolean
     yearExperince?: boolean
     description?: boolean
+    avatar?: boolean
   }
 
-  export type personalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "surname" | "age" | "city" | "country" | "yearExperince" | "description", ExtArgs["result"]["personal"]>
+  export type personalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "surname" | "age" | "city" | "country" | "yearExperince" | "description" | "avatar", ExtArgs["result"]["personal"]>
 
   export type $personalPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "personal"
@@ -4902,6 +4913,7 @@ export namespace Prisma {
       country: string
       yearExperince: number
       description: string
+      avatar: string
     }, ExtArgs["result"]["personal"]>
     composites: {}
   }
@@ -5333,6 +5345,7 @@ export namespace Prisma {
     readonly country: FieldRef<"personal", 'String'>
     readonly yearExperince: FieldRef<"personal", 'Int'>
     readonly description: FieldRef<"personal", 'String'>
+    readonly avatar: FieldRef<"personal", 'String'>
   }
     
 
@@ -8915,7 +8928,8 @@ export namespace Prisma {
     city: 'city',
     country: 'country',
     yearExperince: 'yearExperince',
-    description: 'description'
+    description: 'description',
+    avatar: 'avatar'
   };
 
   export type PersonalScalarFieldEnum = (typeof PersonalScalarFieldEnum)[keyof typeof PersonalScalarFieldEnum]
@@ -9258,6 +9272,7 @@ export namespace Prisma {
     country?: StringFilter<"personal"> | string
     yearExperince?: IntFilter<"personal"> | number
     description?: StringFilter<"personal"> | string
+    avatar?: StringFilter<"personal"> | string
   }
 
   export type personalOrderByWithRelationInput = {
@@ -9269,6 +9284,7 @@ export namespace Prisma {
     country?: SortOrder
     yearExperince?: SortOrder
     description?: SortOrder
+    avatar?: SortOrder
   }
 
   export type personalWhereUniqueInput = Prisma.AtLeast<{
@@ -9283,6 +9299,7 @@ export namespace Prisma {
     country?: StringFilter<"personal"> | string
     yearExperince?: IntFilter<"personal"> | number
     description?: StringFilter<"personal"> | string
+    avatar?: StringFilter<"personal"> | string
   }, "id">
 
   export type personalOrderByWithAggregationInput = {
@@ -9294,6 +9311,7 @@ export namespace Prisma {
     country?: SortOrder
     yearExperince?: SortOrder
     description?: SortOrder
+    avatar?: SortOrder
     _count?: personalCountOrderByAggregateInput
     _avg?: personalAvgOrderByAggregateInput
     _max?: personalMaxOrderByAggregateInput
@@ -9313,6 +9331,7 @@ export namespace Prisma {
     country?: StringWithAggregatesFilter<"personal"> | string
     yearExperince?: IntWithAggregatesFilter<"personal"> | number
     description?: StringWithAggregatesFilter<"personal"> | string
+    avatar?: StringWithAggregatesFilter<"personal"> | string
   }
 
   export type projectsWhereInput = {
@@ -9732,6 +9751,7 @@ export namespace Prisma {
     country: string
     yearExperince: number
     description: string
+    avatar?: string
   }
 
   export type personalUncheckedCreateInput = {
@@ -9743,6 +9763,7 @@ export namespace Prisma {
     country: string
     yearExperince: number
     description: string
+    avatar?: string
   }
 
   export type personalUpdateInput = {
@@ -9753,6 +9774,7 @@ export namespace Prisma {
     country?: StringFieldUpdateOperationsInput | string
     yearExperince?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
+    avatar?: StringFieldUpdateOperationsInput | string
   }
 
   export type personalUncheckedUpdateInput = {
@@ -9764,6 +9786,7 @@ export namespace Prisma {
     country?: StringFieldUpdateOperationsInput | string
     yearExperince?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
+    avatar?: StringFieldUpdateOperationsInput | string
   }
 
   export type personalCreateManyInput = {
@@ -9775,6 +9798,7 @@ export namespace Prisma {
     country: string
     yearExperince: number
     description: string
+    avatar?: string
   }
 
   export type personalUpdateManyMutationInput = {
@@ -9785,6 +9809,7 @@ export namespace Prisma {
     country?: StringFieldUpdateOperationsInput | string
     yearExperince?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
+    avatar?: StringFieldUpdateOperationsInput | string
   }
 
   export type personalUncheckedUpdateManyInput = {
@@ -9796,6 +9821,7 @@ export namespace Prisma {
     country?: StringFieldUpdateOperationsInput | string
     yearExperince?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
+    avatar?: StringFieldUpdateOperationsInput | string
   }
 
   export type projectsCreateInput = {
@@ -10211,6 +10237,7 @@ export namespace Prisma {
     country?: SortOrder
     yearExperince?: SortOrder
     description?: SortOrder
+    avatar?: SortOrder
   }
 
   export type personalAvgOrderByAggregateInput = {
@@ -10228,6 +10255,7 @@ export namespace Prisma {
     country?: SortOrder
     yearExperince?: SortOrder
     description?: SortOrder
+    avatar?: SortOrder
   }
 
   export type personalMinOrderByAggregateInput = {
@@ -10239,6 +10267,7 @@ export namespace Prisma {
     country?: SortOrder
     yearExperince?: SortOrder
     description?: SortOrder
+    avatar?: SortOrder
   }
 
   export type personalSumOrderByAggregateInput = {

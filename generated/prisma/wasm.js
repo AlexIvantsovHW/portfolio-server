@@ -158,7 +158,8 @@ exports.Prisma.PersonalScalarFieldEnum = {
   city: 'city',
   country: 'country',
   yearExperince: 'yearExperince',
-  description: 'description'
+  description: 'description',
+  avatar: 'avatar'
 };
 
 exports.Prisma.ProjectsScalarFieldEnum = {
