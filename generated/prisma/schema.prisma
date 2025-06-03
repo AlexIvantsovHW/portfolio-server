@@ -40,6 +40,7 @@ model jobs {
   startAt      String @db.VarChar
   description  String @db.VarChar
   jobTitle     String @db.VarChar
+  logo         String @default("https://avatar.com")
 }
 
 model personal {

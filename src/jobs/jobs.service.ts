@@ -25,6 +25,7 @@ export class JobsService {
         companyTitle: createJobDto.companyTitle,
         startAt: createJobDto.startAt,
         endAt: createJobDto.endAt,
+        logo: createJobDto.logo,
       },
     });
     if (checkingJob)
@@ -58,3 +59,4 @@ export class JobsService {
     return this.prisma.jobs.delete({ where: { id } });
   }
 }
+/*  */

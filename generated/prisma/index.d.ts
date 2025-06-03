@@ -3594,6 +3594,7 @@ export namespace Prisma {
     startAt: string | null
     description: string | null
     jobTitle: string | null
+    logo: string | null
   }
 
   export type JobsMaxAggregateOutputType = {
@@ -3604,6 +3605,7 @@ export namespace Prisma {
     startAt: string | null
     description: string | null
     jobTitle: string | null
+    logo: string | null
   }
 
   export type JobsCountAggregateOutputType = {
@@ -3614,6 +3616,7 @@ export namespace Prisma {
     startAt: number
     description: number
     jobTitle: number
+    logo: number
     _all: number
   }
 
@@ -3636,6 +3639,7 @@ export namespace Prisma {
     startAt?: true
     description?: true
     jobTitle?: true
+    logo?: true
   }
 
   export type JobsMaxAggregateInputType = {
@@ -3646,6 +3650,7 @@ export namespace Prisma {
     startAt?: true
     description?: true
     jobTitle?: true
+    logo?: true
   }
 
   export type JobsCountAggregateInputType = {
@@ -3656,6 +3661,7 @@ export namespace Prisma {
     startAt?: true
     description?: true
     jobTitle?: true
+    logo?: true
     _all?: true
   }
 
@@ -3753,6 +3759,7 @@ export namespace Prisma {
     startAt: string
     description: string
     jobTitle: string
+    logo: string
     _count: JobsCountAggregateOutputType | null
     _avg: JobsAvgAggregateOutputType | null
     _sum: JobsSumAggregateOutputType | null
@@ -3782,6 +3789,7 @@ export namespace Prisma {
     startAt?: boolean
     description?: boolean
     jobTitle?: boolean
+    logo?: boolean
   }, ExtArgs["result"]["jobs"]>
 
   export type jobsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3792,6 +3800,7 @@ export namespace Prisma {
     startAt?: boolean
     description?: boolean
     jobTitle?: boolean
+    logo?: boolean
   }, ExtArgs["result"]["jobs"]>
 
   export type jobsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3802,6 +3811,7 @@ export namespace Prisma {
     startAt?: boolean
     description?: boolean
     jobTitle?: boolean
+    logo?: boolean
   }, ExtArgs["result"]["jobs"]>
 
   export type jobsSelectScalar = {
@@ -3812,9 +3822,10 @@ export namespace Prisma {
     startAt?: boolean
     description?: boolean
     jobTitle?: boolean
+    logo?: boolean
   }
 
-  export type jobsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "software_id" | "endAt" | "companyTitle" | "startAt" | "description" | "jobTitle", ExtArgs["result"]["jobs"]>
+  export type jobsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "software_id" | "endAt" | "companyTitle" | "startAt" | "description" | "jobTitle" | "logo", ExtArgs["result"]["jobs"]>
 
   export type $jobsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "jobs"
@@ -3827,6 +3838,7 @@ export namespace Prisma {
       startAt: string
       description: string
       jobTitle: string
+      logo: string
     }, ExtArgs["result"]["jobs"]>
     composites: {}
   }
@@ -4257,6 +4269,7 @@ export namespace Prisma {
     readonly startAt: FieldRef<"jobs", 'String'>
     readonly description: FieldRef<"jobs", 'String'>
     readonly jobTitle: FieldRef<"jobs", 'String'>
+    readonly logo: FieldRef<"jobs", 'String'>
   }
     
 
@@ -8914,7 +8927,8 @@ export namespace Prisma {
     companyTitle: 'companyTitle',
     startAt: 'startAt',
     description: 'description',
-    jobTitle: 'jobTitle'
+    jobTitle: 'jobTitle',
+    logo: 'logo'
   };
 
   export type JobsScalarFieldEnum = (typeof JobsScalarFieldEnum)[keyof typeof JobsScalarFieldEnum]
@@ -9207,6 +9221,7 @@ export namespace Prisma {
     startAt?: StringFilter<"jobs"> | string
     description?: StringFilter<"jobs"> | string
     jobTitle?: StringFilter<"jobs"> | string
+    logo?: StringFilter<"jobs"> | string
   }
 
   export type jobsOrderByWithRelationInput = {
@@ -9217,6 +9232,7 @@ export namespace Prisma {
     startAt?: SortOrder
     description?: SortOrder
     jobTitle?: SortOrder
+    logo?: SortOrder
   }
 
   export type jobsWhereUniqueInput = Prisma.AtLeast<{
@@ -9230,6 +9246,7 @@ export namespace Prisma {
     startAt?: StringFilter<"jobs"> | string
     description?: StringFilter<"jobs"> | string
     jobTitle?: StringFilter<"jobs"> | string
+    logo?: StringFilter<"jobs"> | string
   }, "id">
 
   export type jobsOrderByWithAggregationInput = {
@@ -9240,6 +9257,7 @@ export namespace Prisma {
     startAt?: SortOrder
     description?: SortOrder
     jobTitle?: SortOrder
+    logo?: SortOrder
     _count?: jobsCountOrderByAggregateInput
     _avg?: jobsAvgOrderByAggregateInput
     _max?: jobsMaxOrderByAggregateInput
@@ -9258,6 +9276,7 @@ export namespace Prisma {
     startAt?: StringWithAggregatesFilter<"jobs"> | string
     description?: StringWithAggregatesFilter<"jobs"> | string
     jobTitle?: StringWithAggregatesFilter<"jobs"> | string
+    logo?: StringWithAggregatesFilter<"jobs"> | string
   }
 
   export type personalWhereInput = {
@@ -9683,6 +9702,7 @@ export namespace Prisma {
     startAt: string
     description: string
     jobTitle: string
+    logo?: string
   }
 
   export type jobsUncheckedCreateInput = {
@@ -9693,6 +9713,7 @@ export namespace Prisma {
     startAt: string
     description: string
     jobTitle: string
+    logo?: string
   }
 
   export type jobsUpdateInput = {
@@ -9702,6 +9723,7 @@ export namespace Prisma {
     startAt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     jobTitle?: StringFieldUpdateOperationsInput | string
+    logo?: StringFieldUpdateOperationsInput | string
   }
 
   export type jobsUncheckedUpdateInput = {
@@ -9712,6 +9734,7 @@ export namespace Prisma {
     startAt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     jobTitle?: StringFieldUpdateOperationsInput | string
+    logo?: StringFieldUpdateOperationsInput | string
   }
 
   export type jobsCreateManyInput = {
@@ -9722,6 +9745,7 @@ export namespace Prisma {
     startAt: string
     description: string
     jobTitle: string
+    logo?: string
   }
 
   export type jobsUpdateManyMutationInput = {
@@ -9731,6 +9755,7 @@ export namespace Prisma {
     startAt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     jobTitle?: StringFieldUpdateOperationsInput | string
+    logo?: StringFieldUpdateOperationsInput | string
   }
 
   export type jobsUncheckedUpdateManyInput = {
@@ -9741,6 +9766,7 @@ export namespace Prisma {
     startAt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     jobTitle?: StringFieldUpdateOperationsInput | string
+    logo?: StringFieldUpdateOperationsInput | string
   }
 
   export type personalCreateInput = {
@@ -10196,6 +10222,7 @@ export namespace Prisma {
     startAt?: SortOrder
     description?: SortOrder
     jobTitle?: SortOrder
+    logo?: SortOrder
   }
 
   export type jobsAvgOrderByAggregateInput = {
@@ -10211,6 +10238,7 @@ export namespace Prisma {
     startAt?: SortOrder
     description?: SortOrder
     jobTitle?: SortOrder
+    logo?: SortOrder
   }
 
   export type jobsMinOrderByAggregateInput = {
@@ -10221,6 +10249,7 @@ export namespace Prisma {
     startAt?: SortOrder
     description?: SortOrder
     jobTitle?: SortOrder
+    logo?: SortOrder
   }
 
   export type jobsSumOrderByAggregateInput = {

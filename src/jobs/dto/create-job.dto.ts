@@ -1,6 +1,14 @@
-import { IsDateString, IsNumber, IsString, Length, Min } from 'class-validator';
+import {
+  IsDateString,
+  IsNumber,
+  IsString,
+  IsUrl,
+  Length,
+  Min,
+} from 'class-validator';
+import { IJob } from '../module/jobs.interface';
 
-export class CreateJobDto {
+export class CreateJobDto implements IJob {
   readonly id: number;
   @IsString({ message: 'Job title is always string!' })
   @Length(3, 30, {
@@ -26,4 +34,7 @@ export class CreateJobDto {
   @IsNumber({}, { message: 'Software ID must be a number!' })
   @Min(1)
   readonly software_id: number;
+
+  @IsUrl({}, { message: 'logo should be in URL format!' })
+  readonly logo: string;
 }
