@@ -22,4 +22,6 @@ export class JobEntity implements IJobs {
 
   @Column({ nullable: false, type: 'int' })
   software_id: number;
+  @Column({ nullable: false, type: 'int' })
+  logo: string;
 }

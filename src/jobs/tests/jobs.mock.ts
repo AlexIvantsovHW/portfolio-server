@@ -8,4 +8,5 @@ export const testJobs: IJobs = {
   description: 'Frontend development',
   jobTitle: 'Frontend dev',
   software_id: 1,
+  logo: 'https://avatar.com',
 };

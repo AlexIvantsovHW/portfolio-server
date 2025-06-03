@@ -147,7 +147,8 @@ exports.Prisma.JobsScalarFieldEnum = {
   companyTitle: 'companyTitle',
   startAt: 'startAt',
   description: 'description',
-  jobTitle: 'jobTitle'
+  jobTitle: 'jobTitle',
+  logo: 'logo'
 };
 
 exports.Prisma.PersonalScalarFieldEnum = {
