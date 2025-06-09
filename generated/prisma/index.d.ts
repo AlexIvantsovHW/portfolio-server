@@ -2537,6 +2537,8 @@ export namespace Prisma {
     position: string | null
     companyTitle: string | null
     logo: string | null
+    country: string | null
+    city: string | null
   }
 
   export type FeedbacksMaxAggregateOutputType = {
@@ -2547,6 +2549,8 @@ export namespace Prisma {
     position: string | null
     companyTitle: string | null
     logo: string | null
+    country: string | null
+    city: string | null
   }
 
   export type FeedbacksCountAggregateOutputType = {
@@ -2557,6 +2561,8 @@ export namespace Prisma {
     position: number
     companyTitle: number
     logo: number
+    country: number
+    city: number
     _all: number
   }
 
@@ -2577,6 +2583,8 @@ export namespace Prisma {
     position?: true
     companyTitle?: true
     logo?: true
+    country?: true
+    city?: true
   }
 
   export type FeedbacksMaxAggregateInputType = {
@@ -2587,6 +2595,8 @@ export namespace Prisma {
     position?: true
     companyTitle?: true
     logo?: true
+    country?: true
+    city?: true
   }
 
   export type FeedbacksCountAggregateInputType = {
@@ -2597,6 +2607,8 @@ export namespace Prisma {
     position?: true
     companyTitle?: true
     logo?: true
+    country?: true
+    city?: true
     _all?: true
   }
 
@@ -2694,6 +2706,8 @@ export namespace Prisma {
     position: string
     companyTitle: string
     logo: string
+    country: string
+    city: string
     _count: FeedbacksCountAggregateOutputType | null
     _avg: FeedbacksAvgAggregateOutputType | null
     _sum: FeedbacksSumAggregateOutputType | null
@@ -2723,6 +2737,8 @@ export namespace Prisma {
     position?: boolean
     companyTitle?: boolean
     logo?: boolean
+    country?: boolean
+    city?: boolean
   }, ExtArgs["result"]["feedbacks"]>
 
   export type feedbacksSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2733,6 +2749,8 @@ export namespace Prisma {
     position?: boolean
     companyTitle?: boolean
     logo?: boolean
+    country?: boolean
+    city?: boolean
   }, ExtArgs["result"]["feedbacks"]>
 
   export type feedbacksSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2743,6 +2761,8 @@ export namespace Prisma {
     position?: boolean
     companyTitle?: boolean
     logo?: boolean
+    country?: boolean
+    city?: boolean
   }, ExtArgs["result"]["feedbacks"]>
 
   export type feedbacksSelectScalar = {
@@ -2753,9 +2773,11 @@ export namespace Prisma {
     position?: boolean
     companyTitle?: boolean
     logo?: boolean
+    country?: boolean
+    city?: boolean
   }
 
-  export type feedbacksOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "date" | "description" | "position" | "companyTitle" | "logo", ExtArgs["result"]["feedbacks"]>
+  export type feedbacksOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "date" | "description" | "position" | "companyTitle" | "logo" | "country" | "city", ExtArgs["result"]["feedbacks"]>
 
   export type $feedbacksPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "feedbacks"
@@ -2768,6 +2790,8 @@ export namespace Prisma {
       position: string
       companyTitle: string
       logo: string
+      country: string
+      city: string
     }, ExtArgs["result"]["feedbacks"]>
     composites: {}
   }
@@ -3198,6 +3222,8 @@ export namespace Prisma {
     readonly position: FieldRef<"feedbacks", 'String'>
     readonly companyTitle: FieldRef<"feedbacks", 'String'>
     readonly logo: FieldRef<"feedbacks", 'String'>
+    readonly country: FieldRef<"feedbacks", 'String'>
+    readonly city: FieldRef<"feedbacks", 'String'>
   }
     
 
@@ -8914,7 +8940,9 @@ export namespace Prisma {
     description: 'description',
     position: 'position',
     companyTitle: 'companyTitle',
-    logo: 'logo'
+    logo: 'logo',
+    country: 'country',
+    city: 'city'
   };
 
   export type FeedbacksScalarFieldEnum = (typeof FeedbacksScalarFieldEnum)[keyof typeof FeedbacksScalarFieldEnum]
@@ -9157,6 +9185,8 @@ export namespace Prisma {
     position?: StringFilter<"feedbacks"> | string
     companyTitle?: StringFilter<"feedbacks"> | string
     logo?: StringFilter<"feedbacks"> | string
+    country?: StringFilter<"feedbacks"> | string
+    city?: StringFilter<"feedbacks"> | string
   }
 
   export type feedbacksOrderByWithRelationInput = {
@@ -9167,6 +9197,8 @@ export namespace Prisma {
     position?: SortOrder
     companyTitle?: SortOrder
     logo?: SortOrder
+    country?: SortOrder
+    city?: SortOrder
   }
 
   export type feedbacksWhereUniqueInput = Prisma.AtLeast<{
@@ -9180,6 +9212,8 @@ export namespace Prisma {
     position?: StringFilter<"feedbacks"> | string
     companyTitle?: StringFilter<"feedbacks"> | string
     logo?: StringFilter<"feedbacks"> | string
+    country?: StringFilter<"feedbacks"> | string
+    city?: StringFilter<"feedbacks"> | string
   }, "id">
 
   export type feedbacksOrderByWithAggregationInput = {
@@ -9190,6 +9224,8 @@ export namespace Prisma {
     position?: SortOrder
     companyTitle?: SortOrder
     logo?: SortOrder
+    country?: SortOrder
+    city?: SortOrder
     _count?: feedbacksCountOrderByAggregateInput
     _avg?: feedbacksAvgOrderByAggregateInput
     _max?: feedbacksMaxOrderByAggregateInput
@@ -9208,6 +9244,8 @@ export namespace Prisma {
     position?: StringWithAggregatesFilter<"feedbacks"> | string
     companyTitle?: StringWithAggregatesFilter<"feedbacks"> | string
     logo?: StringWithAggregatesFilter<"feedbacks"> | string
+    country?: StringWithAggregatesFilter<"feedbacks"> | string
+    city?: StringWithAggregatesFilter<"feedbacks"> | string
   }
 
   export type jobsWhereInput = {
@@ -9635,6 +9673,8 @@ export namespace Prisma {
     position: string
     companyTitle: string
     logo: string
+    country?: string
+    city?: string
   }
 
   export type feedbacksUncheckedCreateInput = {
@@ -9645,6 +9685,8 @@ export namespace Prisma {
     position: string
     companyTitle: string
     logo: string
+    country?: string
+    city?: string
   }
 
   export type feedbacksUpdateInput = {
@@ -9654,6 +9696,8 @@ export namespace Prisma {
     position?: StringFieldUpdateOperationsInput | string
     companyTitle?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
   }
 
   export type feedbacksUncheckedUpdateInput = {
@@ -9664,6 +9708,8 @@ export namespace Prisma {
     position?: StringFieldUpdateOperationsInput | string
     companyTitle?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
   }
 
   export type feedbacksCreateManyInput = {
@@ -9674,6 +9720,8 @@ export namespace Prisma {
     position: string
     companyTitle: string
     logo: string
+    country?: string
+    city?: string
   }
 
   export type feedbacksUpdateManyMutationInput = {
@@ -9683,6 +9731,8 @@ export namespace Prisma {
     position?: StringFieldUpdateOperationsInput | string
     companyTitle?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
   }
 
   export type feedbacksUncheckedUpdateManyInput = {
@@ -9693,6 +9743,8 @@ export namespace Prisma {
     position?: StringFieldUpdateOperationsInput | string
     companyTitle?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
   }
 
   export type jobsCreateInput = {
@@ -10170,6 +10222,8 @@ export namespace Prisma {
     position?: SortOrder
     companyTitle?: SortOrder
     logo?: SortOrder
+    country?: SortOrder
+    city?: SortOrder
   }
 
   export type feedbacksAvgOrderByAggregateInput = {
@@ -10184,6 +10238,8 @@ export namespace Prisma {
     position?: SortOrder
     companyTitle?: SortOrder
     logo?: SortOrder
+    country?: SortOrder
+    city?: SortOrder
   }
 
   export type feedbacksMinOrderByAggregateInput = {
@@ -10194,6 +10250,8 @@ export namespace Prisma {
     position?: SortOrder
     companyTitle?: SortOrder
     logo?: SortOrder
+    country?: SortOrder
+    city?: SortOrder
   }
 
   export type feedbacksSumOrderByAggregateInput = {

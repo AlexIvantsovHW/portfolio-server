@@ -6,5 +6,7 @@ export interface IFeedbacks {
   position: string;
   companyTitle: string;
   logo: string;
+  country: string;
+  city: string;
 }
 export type IFeedback = Omit<IFeedbacks, 'id'>;

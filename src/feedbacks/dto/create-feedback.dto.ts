@@ -31,4 +31,14 @@ export class CreateFeedbackDto implements IFeedback {
   @IsUrl()
   @IsNotEmpty()
   logo: string;
+
+  @IsString()
+  @Length(2)
+  @IsNotEmpty()
+  country: string;
+
+  @IsString()
+  @Length(2)
+  @IsNotEmpty()
+  city: string;
 }

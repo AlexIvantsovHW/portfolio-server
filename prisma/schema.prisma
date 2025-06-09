@@ -30,6 +30,8 @@ model feedbacks {
   position     String
   companyTitle String
   logo         String 
+  country      String @default("Russia")
+  city         String @default("Moscow")
 }
 
 model jobs {

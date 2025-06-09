@@ -137,7 +137,9 @@ exports.Prisma.FeedbacksScalarFieldEnum = {
   description: 'description',
   position: 'position',
   companyTitle: 'companyTitle',
-  logo: 'logo'
+  logo: 'logo',
+  country: 'country',
+  city: 'city'
 };
 
 exports.Prisma.JobsScalarFieldEnum = {
