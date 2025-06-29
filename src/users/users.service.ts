@@ -3,16 +3,40 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { handlePrismaError } from 'src/exception/prisma-error-handler/prisma-error-handler';
-import { Tusers } from './module/users.type';
-
+import { Tuser, Tusers } from './module/users.type';
+import * as bcrypt from 'bcrypt';
 @Injectable()
 export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
-  async create(createUserDto: CreateUserDto): Promise<Tusers> {
+  async create(createUserDto: CreateUserDto): Promise<Tuser> {
     try {
-      return await this.prisma.user.create({ data: createUserDto });
-    } catch (e) {
-      handlePrismaError(e);
+      const saltRounds = 10;
+      const { password, ...rest } = createUserDto;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      const hashedPassword = (await bcrypt.hash(
+        password,
+        saltRounds,
+      )) as string;
+      const existingUsername = await this.prisma.user.findUnique({
+        where: { username: rest.username },
+      });
+      const existingEmail = await this.prisma.user.findUnique({
+        where: { email: rest.email },
+      });
+
+      if (existingUsername || existingEmail) {
+        throw new HttpException(
+          `User with email (${rest.email})  or username (${rest.username}) is already exist in DB!`,
+          HttpStatus.NOT_FOUND,
+        );
+      }
+      const newUser = await this.prisma.user.create({
+        data: { ...rest, password: hashedPassword },
+      });
+      const { password: ps, id, ...response } = newUser;
+      return response;
+    } catch (e: unknown) {
+      handlePrismaError(e as Error);
     }
   }
 

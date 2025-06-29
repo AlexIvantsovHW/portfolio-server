@@ -4,4 +4,4 @@ export type Tusers = {
   password: string;
   email: string;
 };
-export type Tuser = Omit<Tusers, 'id'>;
+export type Tuser = Omit<Tusers, 'id' | 'password'>;
