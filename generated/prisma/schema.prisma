@@ -81,7 +81,7 @@ model universities {
 
 model user {
   id       Int    @id @default(autoincrement())
-  username String @db.VarChar
+  username String @unique @db.VarChar
   password String @db.VarChar
-  email    String @db.VarChar
+  email    String @unique @db.VarChar
 }
