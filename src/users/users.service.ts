@@ -81,7 +81,19 @@ export class UsersService {
       handlePrismaError(e);
     }
   }
-
+  async findByEmail(email: string): Promise<Tusers> {
+    try {
+      const user = await this.prisma.user.findFirst({ where: { email } });
+      if (!user)
+        throw new HttpException(
+          `There is no user with such ${email} email`,
+          HttpStatus.NOT_FOUND,
+        );
+      return user;
+    } catch (e: unknown) {
+      handlePrismaError(e);
+    }
+  }
   async remove(id: number) {
     try {
       const user = await this.prisma.user.delete({ where: { id } });

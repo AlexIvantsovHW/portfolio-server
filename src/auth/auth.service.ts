@@ -1,31 +1,62 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { LoginDto } from './dto/login.dto';
 import { SigninDto } from './dto/signin.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { handlePrismaError } from 'src/exception/prisma-error-handler/prisma-error-handler';
 import { JwtService } from '@nestjs/jwt';
-
+import { UsersService } from 'src/users/users.service';
+import * as bcrypt from 'bcrypt';
 @Injectable()
 export class AuthService {
   constructor(
     private readonly prisma: PrismaService,
     private jwtService: JwtService,
-    //private userService: UsersService,
+    private userService: UsersService,
   ) {}
+  async validateUser(password, email): Promise<boolean> {
+    const user = await this.prisma.user.findUnique({
+      where: { email },
+    });
+    if (!user) {
+      throw new UnauthorizedException();
+    }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) throw new UnauthorizedException();
+    return true;
+  }
   async login(loginDto: LoginDto) {
     try {
-      const user = await this.prisma.user.findUnique({
-        where: { email: loginDto.email },
-      });
-      if (!user) {
+      const { email, password } = loginDto;
+      const isValid = await this.validateUser(password, email);
+      if (!isValid) throw new UnauthorizedException();
+
+      const user = await this.userService.findByEmail(email);
+
+      if (!user) throw new UnauthorizedException();
+
+      const payload = { sub: user.id, email: user.email };
+
+      const access_token: string = await this.jwtService.signAsync(payload);
+
+      return {
+        access_token,
+        response: { message: ['You are successfully authorized'], code: 200 },
+      };
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        handlePrismaError(e);
+      } else {
         throw new HttpException(
-          'There is no user with email- ${loginDto.email}',
-          HttpStatus.BAD_GATEWAY,
+          'Unknown error',
+          HttpStatus.INTERNAL_SERVER_ERROR,
         );
       }
-      return 'This action adds a new auth';
-    } catch (e) {
-      handlePrismaError(e);
     }
   }
 

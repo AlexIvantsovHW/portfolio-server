@@ -11,6 +11,7 @@ export class AuthController {
   @Post()
   login(@Body() loginDto: LoginDto) {
     try {
+      console.log('controller', loginDto);
       return this.authService.login(loginDto);
     } catch (e) {
       handlePrismaError(e);
