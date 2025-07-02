@@ -11,13 +11,12 @@ export class AuthController {
   @Post()
   login(@Body() loginDto: LoginDto) {
     try {
-      console.log('controller', loginDto);
       return this.authService.login(loginDto);
     } catch (e) {
       handlePrismaError(e);
     }
   }
-  @Post()
+  @Post('signin')
   signin(@Body() signinDto: SigninDto) {
     try {
       return this.authService.signin(signinDto);

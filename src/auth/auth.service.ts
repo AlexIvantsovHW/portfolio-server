@@ -60,7 +60,26 @@ export class AuthService {
     }
   }
 
-  signin(signinDto: SigninDto) {
-    return `This action returns all auth`;
+  async signin(signinDto: SigninDto) {
+    try {
+      const { password, email, username } = signinDto;
+      const saltRings = 10;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const hashedPassword: string = await bcrypt.hash(password, saltRings);
+      const newUser = await this.prisma.user.create({
+        data: { password: hashedPassword, email, username },
+      });
+      if (!newUser)
+        throw new HttpException('User was not created!', HttpStatus.CONFLICT);
+      return newUser;
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new HttpException(
+          e.stack || e.message,
+          HttpStatus.INTERNAL_SERVER_ERROR,
+        );
+      }
+      handlePrismaError(e);
+    }
   }
 }
