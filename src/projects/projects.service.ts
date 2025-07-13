@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { ProjectEntity } from './entities/project.entity';
 import { IProjects } from './module/projects.interface';
 import { PrismaService } from '../prisma/prisma.service';
 import { MessageDto } from './dto/message.dto';
+import { handlePrismaError } from 'src/exception/prisma-error-handler/prisma-error-handler';
 
 @Injectable()
 export class ProjectsService {
@@ -74,23 +75,24 @@ export class ProjectsService {
     id: number,
     updateProjectDto: UpdateProjectDto,
   ): Promise<{ data: ProjectEntity[]; message: string } | MessageDto> {
-    const project = await this.prisma.projects.findUnique({ where: { id } });
-    if (!project || project === null)
-      return { message: `Project with id ${id} doesn't exist in DB` };
-    await this.prisma.projects.update({
-      where: { id },
-      data: updateProjectDto,
-    });
-    /*   return {
-      ...updatedProject,
-      startAt: updatedProject.startAt.toString(),
-      endAt: updatedProject.endAt.toString(),
-    }; */
-
-    const updatedData = await this.findAll();
-    return {
-      message: 'Job data was successfully updated',
-      data: updatedData,
-    };
+    try {
+      const project = await this.prisma.projects.findUnique({ where: { id } });
+      if (!project || project === null)
+        throw new HttpException(
+          `Project with id ${id} doesn't exist in DB`,
+          HttpStatus.CONFLICT,
+        );
+      await this.prisma.projects.update({
+        where: { id },
+        data: updateProjectDto,
+      });
+      const updatedData = await this.findAll();
+      return {
+        message: 'Job data was successfully updated',
+        data: updatedData,
+      };
+    } catch (e) {
+      handlePrismaError(e);
+    }
   }
 }
