@@ -36,14 +36,18 @@ export class PersonalService {
   async update(
     id: number,
     updatePersonalDto: UpdatePersonalDto,
-  ): Promise<PersonalEntity | MessageDto> {
+  ): Promise<{ message: string; data: PersonalEntity } | MessageDto> {
     const person = await this.prisma.personal.findUnique({ where: { id } });
     if (!person || person === null)
       return { message: `Person with id ${id} doesn't exist in DB!` };
-    return this.prisma.personal.update({
+    const updatedData = await this.prisma.personal.update({
       where: { id },
       data: { ...updatePersonalDto },
     });
+    return {
+      message: 'Person data was successfully updated',
+      data: updatedData,
+    };
   }
   async delete(id: number): Promise<PersonalEntity | MessageDto> {
     const person = await this.prisma.personal.findUnique({ where: { id } });
