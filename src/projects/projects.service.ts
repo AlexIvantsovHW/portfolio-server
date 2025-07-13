@@ -73,18 +73,24 @@ export class ProjectsService {
   async update(
     id: number,
     updateProjectDto: UpdateProjectDto,
-  ): Promise<UpdateProjectDto | MessageDto> {
+  ): Promise<{ data: ProjectEntity[]; message: string } | MessageDto> {
     const project = await this.prisma.projects.findUnique({ where: { id } });
     if (!project || project === null)
       return { message: `Project with id ${id} doesn't exist in DB` };
-    const updatedProject = await this.prisma.projects.update({
+    await this.prisma.projects.update({
       where: { id },
       data: updateProjectDto,
     });
-    return {
+    /*   return {
       ...updatedProject,
       startAt: updatedProject.startAt.toString(),
       endAt: updatedProject.endAt.toString(),
+    }; */
+
+    const updatedData = await this.findAll();
+    return {
+      message: 'Job data was successfully updated',
+      data: updatedData,
     };
   }
 }
