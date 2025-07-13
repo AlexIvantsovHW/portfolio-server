@@ -17,4 +17,8 @@ export class FeedbackEnitiy implements IFeedbacks {
   companyTitle: string;
   @Column({ nullable: false })
   logo: string;
+  @Column({ nullable: false })
+  country: string;
+  @Column({ nullable: false })
+  city: string;
 }

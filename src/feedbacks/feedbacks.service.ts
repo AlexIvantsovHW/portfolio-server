@@ -47,6 +47,8 @@ export class FeedbacksService {
         position: createFeedbackDto.position,
         companyTitle: createFeedbackDto.companyTitle,
         logo: createFeedbackDto.logo,
+        country: createFeedbackDto.country,
+        city: createFeedbackDto.city,
       },
     });
     if (feedback) return { message: `Feedback exists in DB` };

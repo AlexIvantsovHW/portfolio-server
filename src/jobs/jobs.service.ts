@@ -37,7 +37,7 @@ export class JobsService {
   async update(
     id: number,
     updateJobDto: UpdateJobDto,
-  ): Promise<UpdateJobDto | MessageDto> {
+  ): Promise<{ data: JobEntity[]; message: string } | MessageDto> {
     const job = await this.prisma.jobs.findFirst({
       where: { id },
     });
@@ -45,10 +45,15 @@ export class JobsService {
       return {
         message: `Job with id${id} doesn't exist in DB!`,
       };
-    return this.prisma.jobs.update({
+    await this.prisma.jobs.update({
       where: { id },
       data: { ...updateJobDto },
     });
+    const updatedData = await this.findAll();
+    return {
+      message: 'Job data was successfully updated',
+      data: updatedData,
+    };
   }
   async delete(id: number): Promise<CreateJobDto | MessageDto> {
     const job = await this.prisma.jobs.findFirst({ where: { id } });
