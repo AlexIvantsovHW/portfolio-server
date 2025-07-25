@@ -48,16 +48,21 @@ export class UniversityService {
   async update(
     id: number,
     updateUniversityDto: UpdateUniversityDto,
-  ): Promise<UniversityEntity | MessageDto> {
+  ): Promise<{ message: string; data: UniversityEntity[] } | MessageDto> {
     const university = await this.prisma.universities.findUnique({
       where: { id },
     });
-    return !university || university === null
-      ? { message: `University with id ${id} doesn't exist in DB!` }
-      : await this.prisma.universities.update({
-          where: { id },
-          data: { ...updateUniversityDto },
-        });
+    if (!university)
+      return { message: `University with id ${id} doesn't exist in DB!` };
+    await this.prisma.universities.update({
+      where: { id },
+      data: { ...updateUniversityDto },
+    });
+    const universities = await this.prisma.universities.findMany();
+    return {
+      message: 'Univeristy data was successfully updated',
+      data: universities,
+    };
   }
   async delete(id: number): Promise<UniversityEntity | MessageDto> {
     const university = await this.prisma.universities.findUnique({
