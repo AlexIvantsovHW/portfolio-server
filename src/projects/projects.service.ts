@@ -88,7 +88,7 @@ export class ProjectsService {
       });
       const updatedData = await this.findAll();
       return {
-        message: 'Job data was successfully updated',
+        message: 'Project data was successfully updated',
         data: updatedData,
       };
     } catch (e) {
