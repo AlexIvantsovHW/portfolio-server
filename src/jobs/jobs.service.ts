@@ -55,13 +55,19 @@ export class JobsService {
       data: updatedData,
     };
   }
-  async delete(id: number): Promise<CreateJobDto | MessageDto> {
+  async delete(
+    id: number,
+  ): Promise<{ data: JobEntity[]; message: string } | MessageDto> {
     const job = await this.prisma.jobs.findFirst({ where: { id } });
     if (!job || job === null)
       return {
         message: `Job with id${id} doesn't exist in DB!`,
       };
-    return this.prisma.jobs.delete({ where: { id } });
+    await this.prisma.jobs.delete({ where: { id } });
+    const updatedData = await this.findAll();
+    return {
+      message: 'Job  was deleted ',
+      data: updatedData,
+    };
   }
 }
-/*  */
