@@ -1,4 +1,5 @@
 import {
+  IsArray,
   IsDateString,
   IsNumber,
   IsString,
@@ -31,8 +32,9 @@ export class CreateJobDto implements IJob {
   @IsString({ message: 'Description is always string!' })
   readonly description: string;
 
-  @IsNumber({}, { message: 'Software ID must be a number!' })
-  @Min(1)
+  @IsArray({ message: 'software_id must be an array' })
+  @IsNumber({}, { each: true, message: 'Each software_id must be a number' })
+  @Min(0, { each: true, message: 'Each software_id must be at least 0' })
   readonly software_id: number[];
 
   @IsUrl({}, { message: 'logo should be in URL format!' })

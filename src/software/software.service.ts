@@ -83,8 +83,10 @@ export class SoftwareService {
       const softwares = await this.prisma.software.findUnique({
         where: { id },
       });
+
       if (!softwares)
         return { message: `Software with id ${id} doesn't exist in DB` };
+
       await this.prisma.software.update({
         where: { id },
         data: { ...updateSoftwareDto },

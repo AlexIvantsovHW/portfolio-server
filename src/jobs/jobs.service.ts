@@ -52,6 +52,19 @@ export class JobsService {
       return {
         message: `Job with id${id} doesn't exist in DB!`,
       };
+    if (updateJobDto?.software_id && updateJobDto?.software_id?.length > 0) {
+      const softwareIds = updateJobDto.software_id;
+      const existingSoftwares = await this.prisma.software.findMany({
+        where: { id: { in: softwareIds } },
+      });
+      const foundIds = existingSoftwares.map((s) => s.id);
+      const missingIds = softwareIds.filter((id) => !foundIds.includes(id));
+      if (missingIds.length > 0) {
+        return {
+          message: `These software_id(s) are not found: ${missingIds.join(', ')}`,
+        };
+      }
+    }
     await this.prisma.jobs.update({
       where: { id },
       data: { ...updateJobDto },
