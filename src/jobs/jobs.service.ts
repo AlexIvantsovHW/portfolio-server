@@ -4,10 +4,14 @@ import { CreateJobDto } from './dto/create-job.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { MessageDto } from './dto/message.dto';
 import { UpdateJobDto } from './dto/update-job.dto';
+import { SoftwareService } from 'src/software/software.service';
 
 @Injectable()
 export class JobsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private readonly softwareService: SoftwareService,
+  ) {}
 
   async findAll(): Promise<JobEntity[]> {
     return this.prisma.jobs.findMany();
@@ -30,6 +34,12 @@ export class JobsService {
         logo: createJobDto.logo,
       },
     });
+    if (createJobDto?.software_id?.length > 0) {
+      const checkResult = await this.softwareService.validateSoftwareIds(
+        createJobDto.software_id,
+      );
+      if (checkResult !== true) return checkResult;
+    }
     if (checkingJob)
       return {
         message: `This Job is already existing in DB!`,
@@ -53,18 +63,12 @@ export class JobsService {
         message: `Job with id${id} doesn't exist in DB!`,
       };
     if (updateJobDto?.software_id && updateJobDto?.software_id?.length > 0) {
-      const softwareIds = updateJobDto.software_id;
-      const existingSoftwares = await this.prisma.software.findMany({
-        where: { id: { in: softwareIds } },
-      });
-      const foundIds = existingSoftwares.map((s) => s.id);
-      const missingIds = softwareIds.filter((id) => !foundIds.includes(id));
-      if (missingIds.length > 0) {
-        return {
-          message: `These software_id(s) are not found: ${missingIds.join(', ')}`,
-        };
-      }
+      const checkResult = await this.softwareService.validateSoftwareIds(
+        updateJobDto.software_id,
+      );
+      if (checkResult !== true) return checkResult;
     }
+
     await this.prisma.jobs.update({
       where: { id },
       data: { ...updateJobDto },

@@ -128,4 +128,27 @@ export class SoftwareService {
         };
     }
   }
+
+  async validateSoftwareIds(
+    ids: number[],
+  ): Promise<true | { message: string }> {
+    if (!Array.isArray(ids) || ids.length === 0) {
+      return { message: 'software_id must be a non-empty array' };
+    }
+
+    const existingSoftwares = await this.prisma.software.findMany({
+      where: { id: { in: ids } },
+    });
+
+    const foundIds = existingSoftwares.map((s) => s.id);
+    const missingIds = ids.filter((id) => !foundIds.includes(id));
+
+    if (missingIds.length > 0) {
+      return {
+        message: `These software_id(s) are not found: ${missingIds.join(', ')}`,
+      };
+    }
+
+    return true;
+  }
 }
