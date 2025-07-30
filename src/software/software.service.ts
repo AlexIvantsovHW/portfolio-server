@@ -75,8 +75,30 @@ export class SoftwareService {
     }
   }
 
-  update(id: number, updateSoftwareDto: UpdateSoftwareDto) {
-    return `This action updates a #${id} software`;
+  async update(id: number, updateSoftwareDto: UpdateSoftwareDto) {
+    try {
+      const softwares = await this.prisma.software.findUnique({
+        where: { id },
+      });
+      if (!softwares)
+        return { message: `Software with id ${id} doesn't exist in DB` };
+      await this.prisma.software.update({
+        where: { id },
+        data: { ...updateSoftwareDto },
+      });
+      const updatedData = await this.prisma.software.findMany();
+      return {
+        data: updatedData,
+        message: 'Software data were successfully updated',
+      };
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        handlePrismaError(e);
+      } else
+        return {
+          message: 'An unexpected error occurred while creating software.',
+        };
+    }
   }
 
   remove(id: number) {
