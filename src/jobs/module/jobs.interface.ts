@@ -5,7 +5,7 @@ export interface IJobs {
   endAt: string;
   description: string;
   jobTitle: string;
-  software_id: number;
+  software_id: number[];
   logo: string;
 }
 export interface IJob {
@@ -15,6 +15,6 @@ export interface IJob {
   endAt: string;
   description: string;
   jobTitle: string;
-  software_id: number;
+  software_id: number[];
   logo: string;
 }

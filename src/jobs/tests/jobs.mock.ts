@@ -7,6 +7,6 @@ export const testJobs: IJobs = {
   endAt: '2024-02-02',
   description: 'Frontend development',
   jobTitle: 'Frontend dev',
-  software_id: 1,
+  software_id: [1],
   logo: 'https://avatar.com',
 };

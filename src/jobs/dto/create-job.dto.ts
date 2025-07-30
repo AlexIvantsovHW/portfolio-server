@@ -33,7 +33,7 @@ export class CreateJobDto implements IJob {
 
   @IsNumber({}, { message: 'Software ID must be a number!' })
   @Min(1)
-  readonly software_id: number;
+  readonly software_id: number[];
 
   @IsUrl({}, { message: 'logo should be in URL format!' })
   readonly logo: string;

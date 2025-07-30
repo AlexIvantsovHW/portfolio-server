@@ -18,7 +18,9 @@ export class JobsService {
       ? { message: `Job with id ${id} doesn't exist in DB` }
       : job;
   }
-  async create(createJobDto: CreateJobDto): Promise<CreateJobDto | MessageDto> {
+  async create(
+    createJobDto: CreateJobDto,
+  ): Promise<{ data: JobEntity[]; message: string } | MessageDto> {
     const checkingJob = await this.prisma.jobs.findFirst({
       where: {
         jobTitle: createJobDto.jobTitle,
@@ -32,7 +34,12 @@ export class JobsService {
       return {
         message: `This Job is already existing in DB!`,
       };
-    return this.prisma.jobs.create({ data: { ...createJobDto } });
+    await this.prisma.jobs.create({ data: { ...createJobDto } });
+    const updatedData = await this.findAll();
+    return {
+      message: 'Job data was successfully updated',
+      data: updatedData,
+    };
   }
   async update(
     id: number,
