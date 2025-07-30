@@ -75,7 +75,10 @@ export class SoftwareService {
     }
   }
 
-  async update(id: number, updateSoftwareDto: UpdateSoftwareDto) {
+  async update(
+    id: number,
+    updateSoftwareDto: UpdateSoftwareDto,
+  ): Promise<Tresponse<ISoftwares>> {
     try {
       const softwares = await this.prisma.software.findUnique({
         where: { id },
@@ -101,7 +104,26 @@ export class SoftwareService {
     }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} software`;
+  async remove(id: number): Promise<Tresponse<ISoftwares>> {
+    try {
+      const checkingSoftware = await this.prisma.software.findUnique({
+        where: { id },
+      });
+      if (!checkingSoftware)
+        return { message: `Software with id ${id} doesn't exist in DB` };
+      await this.prisma.software.delete({ where: { id } });
+      const updatedData = await this.prisma.software.findMany();
+      return {
+        data: updatedData,
+        message: 'Software data were successfully deleted',
+      };
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        handlePrismaError(e);
+      } else
+        return {
+          message: 'An unexpected error occurred while creating software.',
+        };
+    }
   }
 }
