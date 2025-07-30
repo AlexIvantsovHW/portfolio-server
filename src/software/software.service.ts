@@ -54,8 +54,25 @@ export class SoftwareService {
     }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} software`;
+  async findOne(id: number): Promise<Tresponse<ISoftwares>> {
+    try {
+      const softwares = await this.prisma.software.findUnique({
+        where: { id },
+      });
+      if (!softwares)
+        return { message: `Software with id ${id} doesn't exist in DB` };
+      return {
+        data: [softwares],
+        message: 'Software data were successfully received',
+      };
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        handlePrismaError(e);
+      } else
+        return {
+          message: 'An unexpected error occurred while creating software.',
+        };
+    }
   }
 
   update(id: number, updateSoftwareDto: UpdateSoftwareDto) {
