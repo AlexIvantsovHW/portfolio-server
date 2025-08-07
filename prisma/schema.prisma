@@ -60,6 +60,7 @@ model personal {
   yearExperince Int
   description   String
   avatar        String @default("https://avatar.com") 
+  software_id  Int[]
 }
 
 model projects {

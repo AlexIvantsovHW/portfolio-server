@@ -1,4 +1,11 @@
-import { IsNumber, IsString, IsUrl, Length, Min } from 'class-validator';
+import {
+  IsArray,
+  IsNumber,
+  IsString,
+  IsUrl,
+  Length,
+  Min,
+} from 'class-validator';
 import { IPerson } from '../model/personal.type';
 
 export class CreatePersonalDto implements IPerson {
@@ -42,4 +49,9 @@ export class CreatePersonalDto implements IPerson {
 
   @IsUrl({}, { message: 'Link must be a valid URL' })
   readonly avatar: string;
+
+  @IsArray({ message: 'software_id must be an array' })
+  @IsNumber({}, { each: true, message: 'Each software_id must be a number' })
+  @Min(0, { each: true, message: 'Each software_id must be at least 0' })
+  readonly software_id: number[];
 }

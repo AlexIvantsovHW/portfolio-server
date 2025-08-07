@@ -5768,12 +5768,14 @@ export namespace Prisma {
     id: number | null
     age: number | null
     yearExperince: number | null
+    software_id: number | null
   }
 
   export type PersonalSumAggregateOutputType = {
     id: number | null
     age: number | null
     yearExperince: number | null
+    software_id: number[]
   }
 
   export type PersonalMinAggregateOutputType = {
@@ -5810,6 +5812,7 @@ export namespace Prisma {
     yearExperince: number
     description: number
     avatar: number
+    software_id: number
     _all: number
   }
 
@@ -5818,12 +5821,14 @@ export namespace Prisma {
     id?: true
     age?: true
     yearExperince?: true
+    software_id?: true
   }
 
   export type PersonalSumAggregateInputType = {
     id?: true
     age?: true
     yearExperince?: true
+    software_id?: true
   }
 
   export type PersonalMinAggregateInputType = {
@@ -5860,6 +5865,7 @@ export namespace Prisma {
     yearExperince?: true
     description?: true
     avatar?: true
+    software_id?: true
     _all?: true
   }
 
@@ -5959,6 +5965,7 @@ export namespace Prisma {
     yearExperince: number
     description: string
     avatar: string
+    software_id: number[]
     _count: PersonalCountAggregateOutputType | null
     _avg: PersonalAvgAggregateOutputType | null
     _sum: PersonalSumAggregateOutputType | null
@@ -5990,6 +5997,7 @@ export namespace Prisma {
     yearExperince?: boolean
     description?: boolean
     avatar?: boolean
+    software_id?: boolean
   }, ExtArgs["result"]["personal"]>
 
   export type personalSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6002,6 +6010,7 @@ export namespace Prisma {
     yearExperince?: boolean
     description?: boolean
     avatar?: boolean
+    software_id?: boolean
   }, ExtArgs["result"]["personal"]>
 
   export type personalSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6014,6 +6023,7 @@ export namespace Prisma {
     yearExperince?: boolean
     description?: boolean
     avatar?: boolean
+    software_id?: boolean
   }, ExtArgs["result"]["personal"]>
 
   export type personalSelectScalar = {
@@ -6026,9 +6036,10 @@ export namespace Prisma {
     yearExperince?: boolean
     description?: boolean
     avatar?: boolean
+    software_id?: boolean
   }
 
-  export type personalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "surname" | "age" | "city" | "country" | "yearExperince" | "description" | "avatar", ExtArgs["result"]["personal"]>
+  export type personalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "surname" | "age" | "city" | "country" | "yearExperince" | "description" | "avatar" | "software_id", ExtArgs["result"]["personal"]>
 
   export type $personalPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "personal"
@@ -6043,6 +6054,7 @@ export namespace Prisma {
       yearExperince: number
       description: string
       avatar: string
+      software_id: number[]
     }, ExtArgs["result"]["personal"]>
     composites: {}
   }
@@ -6475,6 +6487,7 @@ export namespace Prisma {
     readonly yearExperince: FieldRef<"personal", 'Int'>
     readonly description: FieldRef<"personal", 'String'>
     readonly avatar: FieldRef<"personal", 'String'>
+    readonly software_id: FieldRef<"personal", 'Int[]'>
   }
     
 
@@ -10070,7 +10083,8 @@ export namespace Prisma {
     country: 'country',
     yearExperince: 'yearExperince',
     description: 'description',
-    avatar: 'avatar'
+    avatar: 'avatar',
+    software_id: 'software_id'
   };
 
   export type PersonalScalarFieldEnum = (typeof PersonalScalarFieldEnum)[keyof typeof PersonalScalarFieldEnum]
@@ -10473,6 +10487,7 @@ export namespace Prisma {
     yearExperince?: IntFilter<"personal"> | number
     description?: StringFilter<"personal"> | string
     avatar?: StringFilter<"personal"> | string
+    software_id?: IntNullableListFilter<"personal">
   }
 
   export type personalOrderByWithRelationInput = {
@@ -10485,6 +10500,7 @@ export namespace Prisma {
     yearExperince?: SortOrder
     description?: SortOrder
     avatar?: SortOrder
+    software_id?: SortOrder
   }
 
   export type personalWhereUniqueInput = Prisma.AtLeast<{
@@ -10500,6 +10516,7 @@ export namespace Prisma {
     yearExperince?: IntFilter<"personal"> | number
     description?: StringFilter<"personal"> | string
     avatar?: StringFilter<"personal"> | string
+    software_id?: IntNullableListFilter<"personal">
   }, "id">
 
   export type personalOrderByWithAggregationInput = {
@@ -10512,6 +10529,7 @@ export namespace Prisma {
     yearExperince?: SortOrder
     description?: SortOrder
     avatar?: SortOrder
+    software_id?: SortOrder
     _count?: personalCountOrderByAggregateInput
     _avg?: personalAvgOrderByAggregateInput
     _max?: personalMaxOrderByAggregateInput
@@ -10532,6 +10550,7 @@ export namespace Prisma {
     yearExperince?: IntWithAggregatesFilter<"personal"> | number
     description?: StringWithAggregatesFilter<"personal"> | string
     avatar?: StringWithAggregatesFilter<"personal"> | string
+    software_id?: IntNullableListFilter<"personal">
   }
 
   export type projectsWhereInput = {
@@ -11012,6 +11031,7 @@ export namespace Prisma {
     yearExperince: number
     description: string
     avatar?: string
+    software_id?: personalCreatesoftware_idInput | number[]
   }
 
   export type personalUncheckedCreateInput = {
@@ -11024,6 +11044,7 @@ export namespace Prisma {
     yearExperince: number
     description: string
     avatar?: string
+    software_id?: personalCreatesoftware_idInput | number[]
   }
 
   export type personalUpdateInput = {
@@ -11035,6 +11056,7 @@ export namespace Prisma {
     yearExperince?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     avatar?: StringFieldUpdateOperationsInput | string
+    software_id?: personalUpdatesoftware_idInput | number[]
   }
 
   export type personalUncheckedUpdateInput = {
@@ -11047,6 +11069,7 @@ export namespace Prisma {
     yearExperince?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     avatar?: StringFieldUpdateOperationsInput | string
+    software_id?: personalUpdatesoftware_idInput | number[]
   }
 
   export type personalCreateManyInput = {
@@ -11059,6 +11082,7 @@ export namespace Prisma {
     yearExperince: number
     description: string
     avatar?: string
+    software_id?: personalCreatesoftware_idInput | number[]
   }
 
   export type personalUpdateManyMutationInput = {
@@ -11070,6 +11094,7 @@ export namespace Prisma {
     yearExperince?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     avatar?: StringFieldUpdateOperationsInput | string
+    software_id?: personalUpdatesoftware_idInput | number[]
   }
 
   export type personalUncheckedUpdateManyInput = {
@@ -11082,6 +11107,7 @@ export namespace Prisma {
     yearExperince?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     avatar?: StringFieldUpdateOperationsInput | string
+    software_id?: personalUpdatesoftware_idInput | number[]
   }
 
   export type projectsCreateInput = {
@@ -11539,12 +11565,14 @@ export namespace Prisma {
     yearExperince?: SortOrder
     description?: SortOrder
     avatar?: SortOrder
+    software_id?: SortOrder
   }
 
   export type personalAvgOrderByAggregateInput = {
     id?: SortOrder
     age?: SortOrder
     yearExperince?: SortOrder
+    software_id?: SortOrder
   }
 
   export type personalMaxOrderByAggregateInput = {
@@ -11575,6 +11603,7 @@ export namespace Prisma {
     id?: SortOrder
     age?: SortOrder
     yearExperince?: SortOrder
+    software_id?: SortOrder
   }
 
   export type projectsCountOrderByAggregateInput = {
@@ -11709,6 +11738,15 @@ export namespace Prisma {
   }
 
   export type jobsUpdatesoftware_idInput = {
+    set?: number[]
+    push?: number | number[]
+  }
+
+  export type personalCreatesoftware_idInput = {
+    set: number[]
+  }
+
+  export type personalUpdatesoftware_idInput = {
     set?: number[]
     push?: number | number[]
   }

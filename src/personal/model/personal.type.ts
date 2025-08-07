@@ -8,5 +8,6 @@ export type IPersonal = {
   yearExperince: number;
   description: string;
   avatar: string;
+  software_id: number[];
 };
 export type IPerson = Omit<IPersonal, 'id'>;

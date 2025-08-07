@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateSoftwareDto } from './dto/create-software.dto';
 import { UpdateSoftwareDto } from './dto/update-software.dto';
 import { Tresponse } from 'src/utilts/models/response.type';
@@ -11,13 +11,16 @@ export class SoftwareService {
   constructor(private prisma: PrismaService) {}
   async create(
     createSoftwareDto: CreateSoftwareDto,
-  ): Promise<Tresponse<ISoftwares>> {
+  ): Promise<Tresponse<ISoftwares[]>> {
     try {
       const checkingSoftware = await this.prisma.software.findUnique({
         where: { title: createSoftwareDto.title },
       });
       if (checkingSoftware) {
-        return { message: `${createSoftwareDto.title} is already exist in DB` };
+        throw new HttpException(
+          `${createSoftwareDto.title}  is already exist in DB`,
+          HttpStatus.CONFLICT,
+        );
       }
       await this.prisma.software.create({
         data: { ...createSoftwareDto },
@@ -37,7 +40,7 @@ export class SoftwareService {
     }
   }
 
-  async findAll(): Promise<Tresponse<ISoftwares>> {
+  async findAll(): Promise<Tresponse<ISoftwares[]>> {
     try {
       const softwares = await this.prisma.software.findMany();
       return {
@@ -54,7 +57,7 @@ export class SoftwareService {
     }
   }
 
-  async findOne(id: number): Promise<Tresponse<ISoftwares>> {
+  async findOne(id: number): Promise<Tresponse<ISoftwares[]>> {
     try {
       const softwares = await this.prisma.software.findUnique({
         where: { id },
@@ -78,7 +81,7 @@ export class SoftwareService {
   async update(
     id: number,
     updateSoftwareDto: UpdateSoftwareDto,
-  ): Promise<Tresponse<ISoftwares>> {
+  ): Promise<Tresponse<ISoftwares[]>> {
     try {
       const softwares = await this.prisma.software.findUnique({
         where: { id },
@@ -106,7 +109,7 @@ export class SoftwareService {
     }
   }
 
-  async remove(id: number): Promise<Tresponse<ISoftwares>> {
+  async remove(id: number): Promise<Tresponse<ISoftwares[]>> {
     try {
       const checkingSoftware = await this.prisma.software.findUnique({
         where: { id },
