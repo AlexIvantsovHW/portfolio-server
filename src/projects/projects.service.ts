@@ -39,7 +39,7 @@ export class ProjectsService {
   }
   async create(
     createProjectDto: CreateProjectDto,
-  ): Promise<Tresponse<Tproject>> {
+  ): Promise<Tresponse<Tproject[]>> {
     try {
       const chechingProject = await this.prisma.projects.findFirst({
         where: { title: createProjectDto.title },
@@ -49,19 +49,22 @@ export class ProjectsService {
           message: `Project: ${createProjectDto.title} is existing in DB!`,
         };
 
-      const newProject = await this.prisma.projects.create({
+      await this.prisma.projects.create({
         data: {
           ...createProjectDto,
         },
       });
-      const transformedData = {
-        ...newProject,
-        startAt: newProject.startAt.toString(),
-        endAt: newProject.endAt.toString(),
-      };
+
+      const updatedData = (await this.prisma.projects.findMany()).map((p) => {
+        return {
+          ...p,
+          startAt: p.startAt.toString(),
+          endAt: p.endAt.toString(),
+        };
+      });
 
       return {
-        data: transformedData,
+        data: updatedData,
         message: 'Project was successfully created!',
       };
     } catch (e) {
