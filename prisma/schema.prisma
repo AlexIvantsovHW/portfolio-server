@@ -36,13 +36,18 @@ model feedbacks {
 
 model jobs {
   id           Int    @id @default(autoincrement())
-  software_id  Int
+  software_id  Int[]
   endAt        String @db.VarChar
   companyTitle String @db.VarChar
   startAt      String @db.VarChar
   description  String @db.VarChar
   jobTitle     String @db.VarChar
   logo         String @default("https://avatar.com")
+}
+model software{
+   id         Int    @id @default(autoincrement())
+   title      String @unique @db.VarChar
+   logo       String
 }
 
 model personal {
@@ -55,6 +60,7 @@ model personal {
   yearExperince Int
   description   String
   avatar        String @default("https://avatar.com") 
+  software_id  Int[]
 }
 
 model projects {

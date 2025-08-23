@@ -7,3 +7,4 @@ export interface IProjects {
   link: string;
   logo: string;
 }
+export type Tproject = Omit<IProjects, 'id'>;

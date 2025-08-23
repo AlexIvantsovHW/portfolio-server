@@ -29,6 +29,11 @@ export type feedbacks = $Result.DefaultSelection<Prisma.$feedbacksPayload>
  */
 export type jobs = $Result.DefaultSelection<Prisma.$jobsPayload>
 /**
+ * Model software
+ * 
+ */
+export type software = $Result.DefaultSelection<Prisma.$softwarePayload>
+/**
  * Model personal
  * 
  */
@@ -203,6 +208,16 @@ export class PrismaClient<
     * ```
     */
   get jobs(): Prisma.jobsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.software`: Exposes CRUD operations for the **software** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Software
+    * const software = await prisma.software.findMany()
+    * ```
+    */
+  get software(): Prisma.softwareDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.personal`: Exposes CRUD operations for the **personal** model.
@@ -686,6 +701,7 @@ export namespace Prisma {
     contact: 'contact',
     feedbacks: 'feedbacks',
     jobs: 'jobs',
+    software: 'software',
     personal: 'personal',
     projects: 'projects',
     universities: 'universities',
@@ -708,7 +724,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "contact" | "feedbacks" | "jobs" | "personal" | "projects" | "universities" | "user"
+      modelProps: "contact" | "feedbacks" | "jobs" | "software" | "personal" | "projects" | "universities" | "user"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -931,6 +947,80 @@ export namespace Prisma {
           count: {
             args: Prisma.jobsCountArgs<ExtArgs>
             result: $Utils.Optional<JobsCountAggregateOutputType> | number
+          }
+        }
+      }
+      software: {
+        payload: Prisma.$softwarePayload<ExtArgs>
+        fields: Prisma.softwareFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.softwareFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$softwarePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.softwareFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$softwarePayload>
+          }
+          findFirst: {
+            args: Prisma.softwareFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$softwarePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.softwareFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$softwarePayload>
+          }
+          findMany: {
+            args: Prisma.softwareFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$softwarePayload>[]
+          }
+          create: {
+            args: Prisma.softwareCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$softwarePayload>
+          }
+          createMany: {
+            args: Prisma.softwareCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.softwareCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$softwarePayload>[]
+          }
+          delete: {
+            args: Prisma.softwareDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$softwarePayload>
+          }
+          update: {
+            args: Prisma.softwareUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$softwarePayload>
+          }
+          deleteMany: {
+            args: Prisma.softwareDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.softwareUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.softwareUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$softwarePayload>[]
+          }
+          upsert: {
+            args: Prisma.softwareUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$softwarePayload>
+          }
+          aggregate: {
+            args: Prisma.SoftwareAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSoftware>
+          }
+          groupBy: {
+            args: Prisma.softwareGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SoftwareGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.softwareCountArgs<ExtArgs>
+            result: $Utils.Optional<SoftwareCountAggregateOutputType> | number
           }
         }
       }
@@ -1317,6 +1407,7 @@ export namespace Prisma {
     contact?: contactOmit
     feedbacks?: feedbacksOmit
     jobs?: jobsOmit
+    software?: softwareOmit
     personal?: personalOmit
     projects?: projectsOmit
     universities?: universitiesOmit
@@ -3609,12 +3700,11 @@ export namespace Prisma {
 
   export type JobsSumAggregateOutputType = {
     id: number | null
-    software_id: number | null
+    software_id: number[]
   }
 
   export type JobsMinAggregateOutputType = {
     id: number | null
-    software_id: number | null
     endAt: string | null
     companyTitle: string | null
     startAt: string | null
@@ -3625,7 +3715,6 @@ export namespace Prisma {
 
   export type JobsMaxAggregateOutputType = {
     id: number | null
-    software_id: number | null
     endAt: string | null
     companyTitle: string | null
     startAt: string | null
@@ -3659,7 +3748,6 @@ export namespace Prisma {
 
   export type JobsMinAggregateInputType = {
     id?: true
-    software_id?: true
     endAt?: true
     companyTitle?: true
     startAt?: true
@@ -3670,7 +3758,6 @@ export namespace Prisma {
 
   export type JobsMaxAggregateInputType = {
     id?: true
-    software_id?: true
     endAt?: true
     companyTitle?: true
     startAt?: true
@@ -3779,7 +3866,7 @@ export namespace Prisma {
 
   export type JobsGroupByOutputType = {
     id: number
-    software_id: number
+    software_id: number[]
     endAt: string
     companyTitle: string
     startAt: string
@@ -3858,7 +3945,7 @@ export namespace Prisma {
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      software_id: number
+      software_id: number[]
       endAt: string
       companyTitle: string
       startAt: string
@@ -4289,7 +4376,7 @@ export namespace Prisma {
    */
   interface jobsFieldRefs {
     readonly id: FieldRef<"jobs", 'Int'>
-    readonly software_id: FieldRef<"jobs", 'Int'>
+    readonly software_id: FieldRef<"jobs", 'Int[]'>
     readonly endAt: FieldRef<"jobs", 'String'>
     readonly companyTitle: FieldRef<"jobs", 'String'>
     readonly startAt: FieldRef<"jobs", 'String'>
@@ -4663,6 +4750,1009 @@ export namespace Prisma {
 
 
   /**
+   * Model software
+   */
+
+  export type AggregateSoftware = {
+    _count: SoftwareCountAggregateOutputType | null
+    _avg: SoftwareAvgAggregateOutputType | null
+    _sum: SoftwareSumAggregateOutputType | null
+    _min: SoftwareMinAggregateOutputType | null
+    _max: SoftwareMaxAggregateOutputType | null
+  }
+
+  export type SoftwareAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type SoftwareSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type SoftwareMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    logo: string | null
+  }
+
+  export type SoftwareMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    logo: string | null
+  }
+
+  export type SoftwareCountAggregateOutputType = {
+    id: number
+    title: number
+    logo: number
+    _all: number
+  }
+
+
+  export type SoftwareAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type SoftwareSumAggregateInputType = {
+    id?: true
+  }
+
+  export type SoftwareMinAggregateInputType = {
+    id?: true
+    title?: true
+    logo?: true
+  }
+
+  export type SoftwareMaxAggregateInputType = {
+    id?: true
+    title?: true
+    logo?: true
+  }
+
+  export type SoftwareCountAggregateInputType = {
+    id?: true
+    title?: true
+    logo?: true
+    _all?: true
+  }
+
+  export type SoftwareAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which software to aggregate.
+     */
+    where?: softwareWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of software to fetch.
+     */
+    orderBy?: softwareOrderByWithRelationInput | softwareOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: softwareWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` software from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` software.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned software
+    **/
+    _count?: true | SoftwareCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SoftwareAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SoftwareSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SoftwareMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SoftwareMaxAggregateInputType
+  }
+
+  export type GetSoftwareAggregateType<T extends SoftwareAggregateArgs> = {
+        [P in keyof T & keyof AggregateSoftware]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSoftware[P]>
+      : GetScalarType<T[P], AggregateSoftware[P]>
+  }
+
+
+
+
+  export type softwareGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: softwareWhereInput
+    orderBy?: softwareOrderByWithAggregationInput | softwareOrderByWithAggregationInput[]
+    by: SoftwareScalarFieldEnum[] | SoftwareScalarFieldEnum
+    having?: softwareScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SoftwareCountAggregateInputType | true
+    _avg?: SoftwareAvgAggregateInputType
+    _sum?: SoftwareSumAggregateInputType
+    _min?: SoftwareMinAggregateInputType
+    _max?: SoftwareMaxAggregateInputType
+  }
+
+  export type SoftwareGroupByOutputType = {
+    id: number
+    title: string
+    logo: string
+    _count: SoftwareCountAggregateOutputType | null
+    _avg: SoftwareAvgAggregateOutputType | null
+    _sum: SoftwareSumAggregateOutputType | null
+    _min: SoftwareMinAggregateOutputType | null
+    _max: SoftwareMaxAggregateOutputType | null
+  }
+
+  type GetSoftwareGroupByPayload<T extends softwareGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SoftwareGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SoftwareGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SoftwareGroupByOutputType[P]>
+            : GetScalarType<T[P], SoftwareGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type softwareSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    logo?: boolean
+  }, ExtArgs["result"]["software"]>
+
+  export type softwareSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    logo?: boolean
+  }, ExtArgs["result"]["software"]>
+
+  export type softwareSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    logo?: boolean
+  }, ExtArgs["result"]["software"]>
+
+  export type softwareSelectScalar = {
+    id?: boolean
+    title?: boolean
+    logo?: boolean
+  }
+
+  export type softwareOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "logo", ExtArgs["result"]["software"]>
+
+  export type $softwarePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "software"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      title: string
+      logo: string
+    }, ExtArgs["result"]["software"]>
+    composites: {}
+  }
+
+  type softwareGetPayload<S extends boolean | null | undefined | softwareDefaultArgs> = $Result.GetResult<Prisma.$softwarePayload, S>
+
+  type softwareCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<softwareFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SoftwareCountAggregateInputType | true
+    }
+
+  export interface softwareDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['software'], meta: { name: 'software' } }
+    /**
+     * Find zero or one Software that matches the filter.
+     * @param {softwareFindUniqueArgs} args - Arguments to find a Software
+     * @example
+     * // Get one Software
+     * const software = await prisma.software.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends softwareFindUniqueArgs>(args: SelectSubset<T, softwareFindUniqueArgs<ExtArgs>>): Prisma__softwareClient<$Result.GetResult<Prisma.$softwarePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Software that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {softwareFindUniqueOrThrowArgs} args - Arguments to find a Software
+     * @example
+     * // Get one Software
+     * const software = await prisma.software.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends softwareFindUniqueOrThrowArgs>(args: SelectSubset<T, softwareFindUniqueOrThrowArgs<ExtArgs>>): Prisma__softwareClient<$Result.GetResult<Prisma.$softwarePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Software that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {softwareFindFirstArgs} args - Arguments to find a Software
+     * @example
+     * // Get one Software
+     * const software = await prisma.software.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends softwareFindFirstArgs>(args?: SelectSubset<T, softwareFindFirstArgs<ExtArgs>>): Prisma__softwareClient<$Result.GetResult<Prisma.$softwarePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Software that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {softwareFindFirstOrThrowArgs} args - Arguments to find a Software
+     * @example
+     * // Get one Software
+     * const software = await prisma.software.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends softwareFindFirstOrThrowArgs>(args?: SelectSubset<T, softwareFindFirstOrThrowArgs<ExtArgs>>): Prisma__softwareClient<$Result.GetResult<Prisma.$softwarePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Software that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {softwareFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Software
+     * const software = await prisma.software.findMany()
+     * 
+     * // Get first 10 Software
+     * const software = await prisma.software.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const softwareWithIdOnly = await prisma.software.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends softwareFindManyArgs>(args?: SelectSubset<T, softwareFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$softwarePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Software.
+     * @param {softwareCreateArgs} args - Arguments to create a Software.
+     * @example
+     * // Create one Software
+     * const Software = await prisma.software.create({
+     *   data: {
+     *     // ... data to create a Software
+     *   }
+     * })
+     * 
+     */
+    create<T extends softwareCreateArgs>(args: SelectSubset<T, softwareCreateArgs<ExtArgs>>): Prisma__softwareClient<$Result.GetResult<Prisma.$softwarePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Software.
+     * @param {softwareCreateManyArgs} args - Arguments to create many Software.
+     * @example
+     * // Create many Software
+     * const software = await prisma.software.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends softwareCreateManyArgs>(args?: SelectSubset<T, softwareCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Software and returns the data saved in the database.
+     * @param {softwareCreateManyAndReturnArgs} args - Arguments to create many Software.
+     * @example
+     * // Create many Software
+     * const software = await prisma.software.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Software and only return the `id`
+     * const softwareWithIdOnly = await prisma.software.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends softwareCreateManyAndReturnArgs>(args?: SelectSubset<T, softwareCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$softwarePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Software.
+     * @param {softwareDeleteArgs} args - Arguments to delete one Software.
+     * @example
+     * // Delete one Software
+     * const Software = await prisma.software.delete({
+     *   where: {
+     *     // ... filter to delete one Software
+     *   }
+     * })
+     * 
+     */
+    delete<T extends softwareDeleteArgs>(args: SelectSubset<T, softwareDeleteArgs<ExtArgs>>): Prisma__softwareClient<$Result.GetResult<Prisma.$softwarePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Software.
+     * @param {softwareUpdateArgs} args - Arguments to update one Software.
+     * @example
+     * // Update one Software
+     * const software = await prisma.software.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends softwareUpdateArgs>(args: SelectSubset<T, softwareUpdateArgs<ExtArgs>>): Prisma__softwareClient<$Result.GetResult<Prisma.$softwarePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Software.
+     * @param {softwareDeleteManyArgs} args - Arguments to filter Software to delete.
+     * @example
+     * // Delete a few Software
+     * const { count } = await prisma.software.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends softwareDeleteManyArgs>(args?: SelectSubset<T, softwareDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Software.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {softwareUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Software
+     * const software = await prisma.software.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends softwareUpdateManyArgs>(args: SelectSubset<T, softwareUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Software and returns the data updated in the database.
+     * @param {softwareUpdateManyAndReturnArgs} args - Arguments to update many Software.
+     * @example
+     * // Update many Software
+     * const software = await prisma.software.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Software and only return the `id`
+     * const softwareWithIdOnly = await prisma.software.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends softwareUpdateManyAndReturnArgs>(args: SelectSubset<T, softwareUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$softwarePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Software.
+     * @param {softwareUpsertArgs} args - Arguments to update or create a Software.
+     * @example
+     * // Update or create a Software
+     * const software = await prisma.software.upsert({
+     *   create: {
+     *     // ... data to create a Software
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Software we want to update
+     *   }
+     * })
+     */
+    upsert<T extends softwareUpsertArgs>(args: SelectSubset<T, softwareUpsertArgs<ExtArgs>>): Prisma__softwareClient<$Result.GetResult<Prisma.$softwarePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Software.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {softwareCountArgs} args - Arguments to filter Software to count.
+     * @example
+     * // Count the number of Software
+     * const count = await prisma.software.count({
+     *   where: {
+     *     // ... the filter for the Software we want to count
+     *   }
+     * })
+    **/
+    count<T extends softwareCountArgs>(
+      args?: Subset<T, softwareCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SoftwareCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Software.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoftwareAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SoftwareAggregateArgs>(args: Subset<T, SoftwareAggregateArgs>): Prisma.PrismaPromise<GetSoftwareAggregateType<T>>
+
+    /**
+     * Group by Software.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {softwareGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends softwareGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: softwareGroupByArgs['orderBy'] }
+        : { orderBy?: softwareGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, softwareGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSoftwareGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the software model
+   */
+  readonly fields: softwareFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for software.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__softwareClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the software model
+   */
+  interface softwareFieldRefs {
+    readonly id: FieldRef<"software", 'Int'>
+    readonly title: FieldRef<"software", 'String'>
+    readonly logo: FieldRef<"software", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * software findUnique
+   */
+  export type softwareFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the software
+     */
+    select?: softwareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the software
+     */
+    omit?: softwareOmit<ExtArgs> | null
+    /**
+     * Filter, which software to fetch.
+     */
+    where: softwareWhereUniqueInput
+  }
+
+  /**
+   * software findUniqueOrThrow
+   */
+  export type softwareFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the software
+     */
+    select?: softwareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the software
+     */
+    omit?: softwareOmit<ExtArgs> | null
+    /**
+     * Filter, which software to fetch.
+     */
+    where: softwareWhereUniqueInput
+  }
+
+  /**
+   * software findFirst
+   */
+  export type softwareFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the software
+     */
+    select?: softwareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the software
+     */
+    omit?: softwareOmit<ExtArgs> | null
+    /**
+     * Filter, which software to fetch.
+     */
+    where?: softwareWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of software to fetch.
+     */
+    orderBy?: softwareOrderByWithRelationInput | softwareOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for software.
+     */
+    cursor?: softwareWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` software from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` software.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of software.
+     */
+    distinct?: SoftwareScalarFieldEnum | SoftwareScalarFieldEnum[]
+  }
+
+  /**
+   * software findFirstOrThrow
+   */
+  export type softwareFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the software
+     */
+    select?: softwareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the software
+     */
+    omit?: softwareOmit<ExtArgs> | null
+    /**
+     * Filter, which software to fetch.
+     */
+    where?: softwareWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of software to fetch.
+     */
+    orderBy?: softwareOrderByWithRelationInput | softwareOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for software.
+     */
+    cursor?: softwareWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` software from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` software.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of software.
+     */
+    distinct?: SoftwareScalarFieldEnum | SoftwareScalarFieldEnum[]
+  }
+
+  /**
+   * software findMany
+   */
+  export type softwareFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the software
+     */
+    select?: softwareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the software
+     */
+    omit?: softwareOmit<ExtArgs> | null
+    /**
+     * Filter, which software to fetch.
+     */
+    where?: softwareWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of software to fetch.
+     */
+    orderBy?: softwareOrderByWithRelationInput | softwareOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing software.
+     */
+    cursor?: softwareWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` software from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` software.
+     */
+    skip?: number
+    distinct?: SoftwareScalarFieldEnum | SoftwareScalarFieldEnum[]
+  }
+
+  /**
+   * software create
+   */
+  export type softwareCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the software
+     */
+    select?: softwareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the software
+     */
+    omit?: softwareOmit<ExtArgs> | null
+    /**
+     * The data needed to create a software.
+     */
+    data: XOR<softwareCreateInput, softwareUncheckedCreateInput>
+  }
+
+  /**
+   * software createMany
+   */
+  export type softwareCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many software.
+     */
+    data: softwareCreateManyInput | softwareCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * software createManyAndReturn
+   */
+  export type softwareCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the software
+     */
+    select?: softwareSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the software
+     */
+    omit?: softwareOmit<ExtArgs> | null
+    /**
+     * The data used to create many software.
+     */
+    data: softwareCreateManyInput | softwareCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * software update
+   */
+  export type softwareUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the software
+     */
+    select?: softwareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the software
+     */
+    omit?: softwareOmit<ExtArgs> | null
+    /**
+     * The data needed to update a software.
+     */
+    data: XOR<softwareUpdateInput, softwareUncheckedUpdateInput>
+    /**
+     * Choose, which software to update.
+     */
+    where: softwareWhereUniqueInput
+  }
+
+  /**
+   * software updateMany
+   */
+  export type softwareUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update software.
+     */
+    data: XOR<softwareUpdateManyMutationInput, softwareUncheckedUpdateManyInput>
+    /**
+     * Filter which software to update
+     */
+    where?: softwareWhereInput
+    /**
+     * Limit how many software to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * software updateManyAndReturn
+   */
+  export type softwareUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the software
+     */
+    select?: softwareSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the software
+     */
+    omit?: softwareOmit<ExtArgs> | null
+    /**
+     * The data used to update software.
+     */
+    data: XOR<softwareUpdateManyMutationInput, softwareUncheckedUpdateManyInput>
+    /**
+     * Filter which software to update
+     */
+    where?: softwareWhereInput
+    /**
+     * Limit how many software to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * software upsert
+   */
+  export type softwareUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the software
+     */
+    select?: softwareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the software
+     */
+    omit?: softwareOmit<ExtArgs> | null
+    /**
+     * The filter to search for the software to update in case it exists.
+     */
+    where: softwareWhereUniqueInput
+    /**
+     * In case the software found by the `where` argument doesn't exist, create a new software with this data.
+     */
+    create: XOR<softwareCreateInput, softwareUncheckedCreateInput>
+    /**
+     * In case the software was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<softwareUpdateInput, softwareUncheckedUpdateInput>
+  }
+
+  /**
+   * software delete
+   */
+  export type softwareDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the software
+     */
+    select?: softwareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the software
+     */
+    omit?: softwareOmit<ExtArgs> | null
+    /**
+     * Filter which software to delete.
+     */
+    where: softwareWhereUniqueInput
+  }
+
+  /**
+   * software deleteMany
+   */
+  export type softwareDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which software to delete
+     */
+    where?: softwareWhereInput
+    /**
+     * Limit how many software to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * software without action
+   */
+  export type softwareDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the software
+     */
+    select?: softwareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the software
+     */
+    omit?: softwareOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model personal
    */
 
@@ -4678,12 +5768,14 @@ export namespace Prisma {
     id: number | null
     age: number | null
     yearExperince: number | null
+    software_id: number | null
   }
 
   export type PersonalSumAggregateOutputType = {
     id: number | null
     age: number | null
     yearExperince: number | null
+    software_id: number[]
   }
 
   export type PersonalMinAggregateOutputType = {
@@ -4720,6 +5812,7 @@ export namespace Prisma {
     yearExperince: number
     description: number
     avatar: number
+    software_id: number
     _all: number
   }
 
@@ -4728,12 +5821,14 @@ export namespace Prisma {
     id?: true
     age?: true
     yearExperince?: true
+    software_id?: true
   }
 
   export type PersonalSumAggregateInputType = {
     id?: true
     age?: true
     yearExperince?: true
+    software_id?: true
   }
 
   export type PersonalMinAggregateInputType = {
@@ -4770,6 +5865,7 @@ export namespace Prisma {
     yearExperince?: true
     description?: true
     avatar?: true
+    software_id?: true
     _all?: true
   }
 
@@ -4869,6 +5965,7 @@ export namespace Prisma {
     yearExperince: number
     description: string
     avatar: string
+    software_id: number[]
     _count: PersonalCountAggregateOutputType | null
     _avg: PersonalAvgAggregateOutputType | null
     _sum: PersonalSumAggregateOutputType | null
@@ -4900,6 +5997,7 @@ export namespace Prisma {
     yearExperince?: boolean
     description?: boolean
     avatar?: boolean
+    software_id?: boolean
   }, ExtArgs["result"]["personal"]>
 
   export type personalSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4912,6 +6010,7 @@ export namespace Prisma {
     yearExperince?: boolean
     description?: boolean
     avatar?: boolean
+    software_id?: boolean
   }, ExtArgs["result"]["personal"]>
 
   export type personalSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4924,6 +6023,7 @@ export namespace Prisma {
     yearExperince?: boolean
     description?: boolean
     avatar?: boolean
+    software_id?: boolean
   }, ExtArgs["result"]["personal"]>
 
   export type personalSelectScalar = {
@@ -4936,9 +6036,10 @@ export namespace Prisma {
     yearExperince?: boolean
     description?: boolean
     avatar?: boolean
+    software_id?: boolean
   }
 
-  export type personalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "surname" | "age" | "city" | "country" | "yearExperince" | "description" | "avatar", ExtArgs["result"]["personal"]>
+  export type personalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "surname" | "age" | "city" | "country" | "yearExperince" | "description" | "avatar" | "software_id", ExtArgs["result"]["personal"]>
 
   export type $personalPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "personal"
@@ -4953,6 +6054,7 @@ export namespace Prisma {
       yearExperince: number
       description: string
       avatar: string
+      software_id: number[]
     }, ExtArgs["result"]["personal"]>
     composites: {}
   }
@@ -5385,6 +6487,7 @@ export namespace Prisma {
     readonly yearExperince: FieldRef<"personal", 'Int'>
     readonly description: FieldRef<"personal", 'String'>
     readonly avatar: FieldRef<"personal", 'String'>
+    readonly software_id: FieldRef<"personal", 'Int[]'>
   }
     
 
@@ -8962,6 +10065,15 @@ export namespace Prisma {
   export type JobsScalarFieldEnum = (typeof JobsScalarFieldEnum)[keyof typeof JobsScalarFieldEnum]
 
 
+  export const SoftwareScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    logo: 'logo'
+  };
+
+  export type SoftwareScalarFieldEnum = (typeof SoftwareScalarFieldEnum)[keyof typeof SoftwareScalarFieldEnum]
+
+
   export const PersonalScalarFieldEnum: {
     id: 'id',
     username: 'username',
@@ -8971,7 +10083,8 @@ export namespace Prisma {
     country: 'country',
     yearExperince: 'yearExperince',
     description: 'description',
-    avatar: 'avatar'
+    avatar: 'avatar',
+    software_id: 'software_id'
   };
 
   export type PersonalScalarFieldEnum = (typeof PersonalScalarFieldEnum)[keyof typeof PersonalScalarFieldEnum]
@@ -9253,7 +10366,7 @@ export namespace Prisma {
     OR?: jobsWhereInput[]
     NOT?: jobsWhereInput | jobsWhereInput[]
     id?: IntFilter<"jobs"> | number
-    software_id?: IntFilter<"jobs"> | number
+    software_id?: IntNullableListFilter<"jobs">
     endAt?: StringFilter<"jobs"> | string
     companyTitle?: StringFilter<"jobs"> | string
     startAt?: StringFilter<"jobs"> | string
@@ -9278,7 +10391,7 @@ export namespace Prisma {
     AND?: jobsWhereInput | jobsWhereInput[]
     OR?: jobsWhereInput[]
     NOT?: jobsWhereInput | jobsWhereInput[]
-    software_id?: IntFilter<"jobs"> | number
+    software_id?: IntNullableListFilter<"jobs">
     endAt?: StringFilter<"jobs"> | string
     companyTitle?: StringFilter<"jobs"> | string
     startAt?: StringFilter<"jobs"> | string
@@ -9308,13 +10421,57 @@ export namespace Prisma {
     OR?: jobsScalarWhereWithAggregatesInput[]
     NOT?: jobsScalarWhereWithAggregatesInput | jobsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"jobs"> | number
-    software_id?: IntWithAggregatesFilter<"jobs"> | number
+    software_id?: IntNullableListFilter<"jobs">
     endAt?: StringWithAggregatesFilter<"jobs"> | string
     companyTitle?: StringWithAggregatesFilter<"jobs"> | string
     startAt?: StringWithAggregatesFilter<"jobs"> | string
     description?: StringWithAggregatesFilter<"jobs"> | string
     jobTitle?: StringWithAggregatesFilter<"jobs"> | string
     logo?: StringWithAggregatesFilter<"jobs"> | string
+  }
+
+  export type softwareWhereInput = {
+    AND?: softwareWhereInput | softwareWhereInput[]
+    OR?: softwareWhereInput[]
+    NOT?: softwareWhereInput | softwareWhereInput[]
+    id?: IntFilter<"software"> | number
+    title?: StringFilter<"software"> | string
+    logo?: StringFilter<"software"> | string
+  }
+
+  export type softwareOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    logo?: SortOrder
+  }
+
+  export type softwareWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    title?: string
+    AND?: softwareWhereInput | softwareWhereInput[]
+    OR?: softwareWhereInput[]
+    NOT?: softwareWhereInput | softwareWhereInput[]
+    logo?: StringFilter<"software"> | string
+  }, "id" | "title">
+
+  export type softwareOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    logo?: SortOrder
+    _count?: softwareCountOrderByAggregateInput
+    _avg?: softwareAvgOrderByAggregateInput
+    _max?: softwareMaxOrderByAggregateInput
+    _min?: softwareMinOrderByAggregateInput
+    _sum?: softwareSumOrderByAggregateInput
+  }
+
+  export type softwareScalarWhereWithAggregatesInput = {
+    AND?: softwareScalarWhereWithAggregatesInput | softwareScalarWhereWithAggregatesInput[]
+    OR?: softwareScalarWhereWithAggregatesInput[]
+    NOT?: softwareScalarWhereWithAggregatesInput | softwareScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"software"> | number
+    title?: StringWithAggregatesFilter<"software"> | string
+    logo?: StringWithAggregatesFilter<"software"> | string
   }
 
   export type personalWhereInput = {
@@ -9330,6 +10487,7 @@ export namespace Prisma {
     yearExperince?: IntFilter<"personal"> | number
     description?: StringFilter<"personal"> | string
     avatar?: StringFilter<"personal"> | string
+    software_id?: IntNullableListFilter<"personal">
   }
 
   export type personalOrderByWithRelationInput = {
@@ -9342,6 +10500,7 @@ export namespace Prisma {
     yearExperince?: SortOrder
     description?: SortOrder
     avatar?: SortOrder
+    software_id?: SortOrder
   }
 
   export type personalWhereUniqueInput = Prisma.AtLeast<{
@@ -9357,6 +10516,7 @@ export namespace Prisma {
     yearExperince?: IntFilter<"personal"> | number
     description?: StringFilter<"personal"> | string
     avatar?: StringFilter<"personal"> | string
+    software_id?: IntNullableListFilter<"personal">
   }, "id">
 
   export type personalOrderByWithAggregationInput = {
@@ -9369,6 +10529,7 @@ export namespace Prisma {
     yearExperince?: SortOrder
     description?: SortOrder
     avatar?: SortOrder
+    software_id?: SortOrder
     _count?: personalCountOrderByAggregateInput
     _avg?: personalAvgOrderByAggregateInput
     _max?: personalMaxOrderByAggregateInput
@@ -9389,6 +10550,7 @@ export namespace Prisma {
     yearExperince?: IntWithAggregatesFilter<"personal"> | number
     description?: StringWithAggregatesFilter<"personal"> | string
     avatar?: StringWithAggregatesFilter<"personal"> | string
+    software_id?: IntNullableListFilter<"personal">
   }
 
   export type projectsWhereInput = {
@@ -9748,7 +10910,7 @@ export namespace Prisma {
   }
 
   export type jobsCreateInput = {
-    software_id: number
+    software_id?: jobsCreatesoftware_idInput | number[]
     endAt: string
     companyTitle: string
     startAt: string
@@ -9759,7 +10921,7 @@ export namespace Prisma {
 
   export type jobsUncheckedCreateInput = {
     id?: number
-    software_id: number
+    software_id?: jobsCreatesoftware_idInput | number[]
     endAt: string
     companyTitle: string
     startAt: string
@@ -9769,7 +10931,7 @@ export namespace Prisma {
   }
 
   export type jobsUpdateInput = {
-    software_id?: IntFieldUpdateOperationsInput | number
+    software_id?: jobsUpdatesoftware_idInput | number[]
     endAt?: StringFieldUpdateOperationsInput | string
     companyTitle?: StringFieldUpdateOperationsInput | string
     startAt?: StringFieldUpdateOperationsInput | string
@@ -9780,7 +10942,7 @@ export namespace Prisma {
 
   export type jobsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    software_id?: IntFieldUpdateOperationsInput | number
+    software_id?: jobsUpdatesoftware_idInput | number[]
     endAt?: StringFieldUpdateOperationsInput | string
     companyTitle?: StringFieldUpdateOperationsInput | string
     startAt?: StringFieldUpdateOperationsInput | string
@@ -9791,7 +10953,7 @@ export namespace Prisma {
 
   export type jobsCreateManyInput = {
     id?: number
-    software_id: number
+    software_id?: jobsCreatesoftware_idInput | number[]
     endAt: string
     companyTitle: string
     startAt: string
@@ -9801,7 +10963,7 @@ export namespace Prisma {
   }
 
   export type jobsUpdateManyMutationInput = {
-    software_id?: IntFieldUpdateOperationsInput | number
+    software_id?: jobsUpdatesoftware_idInput | number[]
     endAt?: StringFieldUpdateOperationsInput | string
     companyTitle?: StringFieldUpdateOperationsInput | string
     startAt?: StringFieldUpdateOperationsInput | string
@@ -9812,12 +10974,51 @@ export namespace Prisma {
 
   export type jobsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    software_id?: IntFieldUpdateOperationsInput | number
+    software_id?: jobsUpdatesoftware_idInput | number[]
     endAt?: StringFieldUpdateOperationsInput | string
     companyTitle?: StringFieldUpdateOperationsInput | string
     startAt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     jobTitle?: StringFieldUpdateOperationsInput | string
+    logo?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type softwareCreateInput = {
+    title: string
+    logo: string
+  }
+
+  export type softwareUncheckedCreateInput = {
+    id?: number
+    title: string
+    logo: string
+  }
+
+  export type softwareUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    logo?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type softwareUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    logo?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type softwareCreateManyInput = {
+    id?: number
+    title: string
+    logo: string
+  }
+
+  export type softwareUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    logo?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type softwareUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
   }
 
@@ -9830,6 +11031,7 @@ export namespace Prisma {
     yearExperince: number
     description: string
     avatar?: string
+    software_id?: personalCreatesoftware_idInput | number[]
   }
 
   export type personalUncheckedCreateInput = {
@@ -9842,6 +11044,7 @@ export namespace Prisma {
     yearExperince: number
     description: string
     avatar?: string
+    software_id?: personalCreatesoftware_idInput | number[]
   }
 
   export type personalUpdateInput = {
@@ -9853,6 +11056,7 @@ export namespace Prisma {
     yearExperince?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     avatar?: StringFieldUpdateOperationsInput | string
+    software_id?: personalUpdatesoftware_idInput | number[]
   }
 
   export type personalUncheckedUpdateInput = {
@@ -9865,6 +11069,7 @@ export namespace Prisma {
     yearExperince?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     avatar?: StringFieldUpdateOperationsInput | string
+    software_id?: personalUpdatesoftware_idInput | number[]
   }
 
   export type personalCreateManyInput = {
@@ -9877,6 +11082,7 @@ export namespace Prisma {
     yearExperince: number
     description: string
     avatar?: string
+    software_id?: personalCreatesoftware_idInput | number[]
   }
 
   export type personalUpdateManyMutationInput = {
@@ -9888,6 +11094,7 @@ export namespace Prisma {
     yearExperince?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     avatar?: StringFieldUpdateOperationsInput | string
+    software_id?: personalUpdatesoftware_idInput | number[]
   }
 
   export type personalUncheckedUpdateManyInput = {
@@ -9900,6 +11107,7 @@ export namespace Prisma {
     yearExperince?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     avatar?: StringFieldUpdateOperationsInput | string
+    software_id?: personalUpdatesoftware_idInput | number[]
   }
 
   export type projectsCreateInput = {
@@ -10272,6 +11480,14 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type IntNullableListFilter<$PrismaModel = never> = {
+    equals?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    has?: number | IntFieldRefInput<$PrismaModel> | null
+    hasEvery?: number[] | ListIntFieldRefInput<$PrismaModel>
+    hasSome?: number[] | ListIntFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type jobsCountOrderByAggregateInput = {
     id?: SortOrder
     software_id?: SortOrder
@@ -10290,7 +11506,6 @@ export namespace Prisma {
 
   export type jobsMaxOrderByAggregateInput = {
     id?: SortOrder
-    software_id?: SortOrder
     endAt?: SortOrder
     companyTitle?: SortOrder
     startAt?: SortOrder
@@ -10301,7 +11516,6 @@ export namespace Prisma {
 
   export type jobsMinOrderByAggregateInput = {
     id?: SortOrder
-    software_id?: SortOrder
     endAt?: SortOrder
     companyTitle?: SortOrder
     startAt?: SortOrder
@@ -10315,6 +11529,32 @@ export namespace Prisma {
     software_id?: SortOrder
   }
 
+  export type softwareCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    logo?: SortOrder
+  }
+
+  export type softwareAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type softwareMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    logo?: SortOrder
+  }
+
+  export type softwareMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    logo?: SortOrder
+  }
+
+  export type softwareSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
   export type personalCountOrderByAggregateInput = {
     id?: SortOrder
     username?: SortOrder
@@ -10325,12 +11565,14 @@ export namespace Prisma {
     yearExperince?: SortOrder
     description?: SortOrder
     avatar?: SortOrder
+    software_id?: SortOrder
   }
 
   export type personalAvgOrderByAggregateInput = {
     id?: SortOrder
     age?: SortOrder
     yearExperince?: SortOrder
+    software_id?: SortOrder
   }
 
   export type personalMaxOrderByAggregateInput = {
@@ -10361,6 +11603,7 @@ export namespace Prisma {
     id?: SortOrder
     age?: SortOrder
     yearExperince?: SortOrder
+    software_id?: SortOrder
   }
 
   export type projectsCountOrderByAggregateInput = {
@@ -10488,6 +11731,24 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type jobsCreatesoftware_idInput = {
+    set: number[]
+  }
+
+  export type jobsUpdatesoftware_idInput = {
+    set?: number[]
+    push?: number | number[]
+  }
+
+  export type personalCreatesoftware_idInput = {
+    set: number[]
+  }
+
+  export type personalUpdatesoftware_idInput = {
+    set?: number[]
+    push?: number | number[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {

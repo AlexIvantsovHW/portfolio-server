@@ -153,6 +153,12 @@ exports.Prisma.JobsScalarFieldEnum = {
   logo: 'logo'
 };
 
+exports.Prisma.SoftwareScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  logo: 'logo'
+};
+
 exports.Prisma.PersonalScalarFieldEnum = {
   id: 'id',
   username: 'username',
@@ -162,7 +168,8 @@ exports.Prisma.PersonalScalarFieldEnum = {
   country: 'country',
   yearExperince: 'yearExperince',
   description: 'description',
-  avatar: 'avatar'
+  avatar: 'avatar',
+  software_id: 'software_id'
 };
 
 exports.Prisma.ProjectsScalarFieldEnum = {
@@ -209,6 +216,7 @@ exports.Prisma.ModelName = {
   contact: 'contact',
   feedbacks: 'feedbacks',
   jobs: 'jobs',
+  software: 'software',
   personal: 'personal',
   projects: 'projects',
   universities: 'universities',

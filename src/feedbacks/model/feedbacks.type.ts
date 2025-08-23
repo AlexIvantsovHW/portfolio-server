@@ -1,4 +1,4 @@
-export interface IFeedbacks {
+export type TFeedbacks = {
   id: number;
   name: string;
   date: Date;
@@ -8,5 +8,5 @@ export interface IFeedbacks {
   logo: string;
   country: string;
   city: string;
-}
-export type IFeedback = Omit<IFeedbacks, 'id'>;
+};
+export type TFeedback = Omit<TFeedbacks, 'id'>;

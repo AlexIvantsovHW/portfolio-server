@@ -9,16 +9,17 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { JobsService } from './jobs.service';
-import { JobEntity } from './entities/job.entity';
 import { CreateJobDto } from './dto/create-job.dto';
 import { UpdateJobDto } from './dto/update-job.dto';
+import { Tresponse } from 'src/utilts/models/response.type';
+import { IJobs } from './module/jobs.interface';
 
 @Controller('jobs')
 export class JobsController {
   constructor(private readonly jobsService: JobsService) {}
 
   @Get()
-  findAll(): Promise<JobEntity[]> {
+  findAll(): Promise<Tresponse<IJobs[]>> {
     return this.jobsService.findAll();
   }
   @Get(':id')

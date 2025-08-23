@@ -1,8 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { IFeedbacks } from '../model/feedbacks.type';
+import { TFeedbacks } from '../model/feedbacks.type';
 
 @Entity('feedbacks')
-export class FeedbackEnitiy implements IFeedbacks {
+export class FeedbackEnitiy implements TFeedbacks {
   @PrimaryGeneratedColumn({ type: 'int' })
   id: number;
   @Column({ nullable: false })

@@ -1,8 +1,8 @@
 import { Type } from 'class-transformer';
 import { IsDate, IsNotEmpty, IsString, IsUrl, Length } from 'class-validator';
-import { IFeedback } from '../model/feedbacks.type';
+import { TFeedback } from '../model/feedbacks.type';
 
-export class CreateFeedbackDto implements IFeedback {
+export class CreateFeedbackDto implements TFeedback {
   @IsString()
   @Length(2, 20)
   @IsNotEmpty()

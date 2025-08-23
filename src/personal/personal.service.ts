@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreatePersonalDto } from './dto/create-personal.dto';
 import { UpdatePersonalDto } from './dto/update-personal.dto';
-import { PersonalEntity } from './entities/personal.entity';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { MessageDto } from './dto/message.dto';
+import { handlePrismaError } from 'src/exception/prisma-error-handler/prisma-error-handler';
+import { Tresponse } from 'src/utilts/models/response.type';
+import { IPersonal } from './model/personal.type';
 
 @Injectable()
 export class PersonalService {
@@ -11,48 +12,113 @@ export class PersonalService {
 
   async create(
     createPersonalDto: CreatePersonalDto,
-  ): Promise<PersonalEntity | MessageDto> {
-    const person = await this.prisma.personal.findFirst({
-      where: {
-        surname: createPersonalDto.surname,
-        username: createPersonalDto.username,
-      },
-    });
-    if (person) return { message: `Person exists in DB!` };
-    return await this.prisma.personal.create({
-      data: { ...createPersonalDto },
-    });
+  ): Promise<Tresponse<IPersonal[]>> {
+    try {
+      const person = await this.prisma.personal.findFirst({
+        where: {
+          surname: createPersonalDto.surname,
+          username: createPersonalDto.username,
+        },
+      });
+      if (person)
+        throw new HttpException(`Person exists in DB!`, HttpStatus.CONFLICT);
+      await this.prisma.personal.create({
+        data: { ...createPersonalDto },
+      });
+      const updatedData = await this.prisma.personal.findMany();
+      return { data: updatedData, message: 'Updated personal data received!' };
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        handlePrismaError(e);
+      } else
+        return {
+          message: 'An unexpected error occurred while creating software.',
+        };
+    }
   }
 
-  findAll(): Promise<PersonalEntity[]> {
-    return this.prisma.personal.findMany();
+  async findAll(): Promise<Tresponse<IPersonal[]>> {
+    try {
+      const data = await this.prisma.personal.findMany();
+      return { data, message: 'Personal data received!' };
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        handlePrismaError(e);
+      } else
+        return {
+          message: 'An unexpected error occurred while creating software.',
+        };
+    }
   }
-  async findOne(id: number): Promise<PersonalEntity | MessageDto> {
-    const person = await this.prisma.personal.findUnique({ where: { id } });
-    if (!person || person === null)
-      return { message: `Person with id ${id} doesn't exist in DB!` };
-    return person;
+  async findOne(id: number): Promise<Tresponse<IPersonal>> {
+    try {
+      const data = await this.prisma.personal.findUnique({ where: { id } });
+      if (!data || data === null)
+        throw new HttpException(
+          `Person with id ${id} doesn't exist in DB!`,
+          HttpStatus.BAD_REQUEST,
+        );
+
+      return { data, message: 'Person data is received!' };
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        handlePrismaError(e);
+      } else
+        return {
+          message: 'An unexpected error occurred while creating software.',
+        };
+    }
   }
   async update(
     id: number,
     updatePersonalDto: UpdatePersonalDto,
-  ): Promise<{ message: string; data: PersonalEntity } | MessageDto> {
-    const person = await this.prisma.personal.findUnique({ where: { id } });
-    if (!person || person === null)
-      return { message: `Person with id ${id} doesn't exist in DB!` };
-    const updatedData = await this.prisma.personal.update({
-      where: { id },
-      data: { ...updatePersonalDto },
-    });
-    return {
-      message: 'Person data was successfully updated',
-      data: updatedData,
-    };
+  ): Promise<Tresponse<IPersonal[]>> {
+    try {
+      const person = await this.prisma.personal.findUnique({ where: { id } });
+      if (!person || person === null)
+        throw new HttpException(
+          `Person with id ${id} doesn't exist in DB!`,
+          HttpStatus.BAD_REQUEST,
+        );
+      await this.prisma.personal.update({
+        where: { id },
+        data: { ...updatePersonalDto },
+      });
+      const updatedData = await this.prisma.personal.findMany();
+      return {
+        message: 'Person data was successfully updated',
+        data: updatedData,
+      };
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        handlePrismaError(e);
+      } else
+        return {
+          message: 'An unexpected error occurred while creating software.',
+        };
+    }
   }
-  async delete(id: number): Promise<PersonalEntity | MessageDto> {
-    const person = await this.prisma.personal.findUnique({ where: { id } });
-    if (!person || person === null)
-      return { message: `Person with id ${id} doesn't exist in DB!` };
-    return await this.prisma.personal.delete({ where: { id } });
+  async delete(id: number): Promise<Tresponse<IPersonal[]>> {
+    try {
+      const person = await this.prisma.personal.findUnique({ where: { id } });
+      if (!person || person === null)
+        throw new HttpException(
+          `Person with id ${id} doesn't exist in DB!`,
+          HttpStatus.BAD_REQUEST,
+        );
+      await this.prisma.personal.delete({ where: { id } });
+      const updatedData = await this.prisma.personal.findMany();
+      return {
+        message: 'Person was successfully deleted!',
+        data: updatedData,
+      };
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        handlePrismaError(e);
+      } else
+        return {
+          message: 'An unexpected error occurred while creating software.',
+        };
+    }
   }
 }

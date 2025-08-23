@@ -18,7 +18,7 @@ import { MessageDto } from './dto/message.dto';
 export class FeedbacksController {
   constructor(private readonly feedbacksService: FeedbacksService) {}
   @Get()
-  findAll(): Promise<FeedbackEnitiy[]> {
+  findAll() {
     return this.feedbacksService.findAll();
   }
   @Post()
