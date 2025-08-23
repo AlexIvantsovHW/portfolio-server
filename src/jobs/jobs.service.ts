@@ -18,10 +18,10 @@ export class JobsService {
     try {
       const jobs = await this.prisma.jobs.findMany();
       const softwares = jobs.map((j) => j.software_id).flat();
-      const jobSoftwares = await this.prisma.software.findMany({
+      await this.prisma.software.findMany({
         where: { id: { in: softwares } },
       });
-      console.log('jobSoftwares', jobSoftwares);
+
       return { data: jobs, message: 'Jobs are received' };
     } catch (e: unknown) {
       if (e instanceof Error) {

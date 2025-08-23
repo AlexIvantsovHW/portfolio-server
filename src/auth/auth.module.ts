@@ -9,8 +9,7 @@ import { JwtStrategy } from './jws.strategy';
 
 if (!process.env.JWT_SECRET) {
   throw new Error('JWT_SECRET is not defined in environment variables');
-}
-console.log(process.env.JWT_SECRET);
+
 @Module({
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
