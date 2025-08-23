@@ -9,9 +9,10 @@ import { PersonalModule } from './personal/personal.module';
 import { ContactModule } from './contact/contact.module';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaService } from './prisma/prisma.service';
-import { AuthModule } from './auth/auth.module';
+
 import { UsersModule } from './users/users.module';
 import { SoftwareModule } from './software/software.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
