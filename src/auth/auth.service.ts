@@ -1,6 +1,7 @@
 import {
   HttpException,
   HttpStatus,
+  Inject,
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -11,12 +12,16 @@ import { handlePrismaError } from 'src/exception/prisma-error-handler/prisma-err
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
 import * as bcrypt from 'bcrypt';
+import refreshJwtConfig from './config/refresh-jwt.config';
+import { ConfigType } from '@nestjs/config';
 @Injectable()
 export class AuthService {
   constructor(
     private readonly prisma: PrismaService,
     private jwtService: JwtService,
     private userService: UsersService,
+    @Inject(refreshJwtConfig.KEY)
+    private refreshTokenConfig: ConfigType<typeof refreshJwtConfig>,
   ) {}
   async validateUser(password, email): Promise<boolean> {
     const user = await this.prisma.user.findUnique({
@@ -42,10 +47,16 @@ export class AuthService {
 
       const payload = { sub: user.id, email: user.email };
 
-      const access_token: string = await this.jwtService.signAsync(payload);
-
+      const access_token: string = this.jwtService.sign(payload, {
+        expiresIn: '15m',
+      });
+      const refresh_token: string = this.jwtService.sign(
+        payload,
+        this.refreshTokenConfig,
+      );
       return {
         access_token,
+        refresh_token,
         response: { message: ['You are successfully authorized'], code: 200 },
       };
     } catch (e: unknown) {
@@ -81,5 +92,10 @@ export class AuthService {
       }
       handlePrismaError(e);
     }
+  }
+  refreshToken(id: number) {
+    const payload = { sub: id };
+    const token: string = this.jwtService.sign(payload);
+    return { id, token };
   }
 }

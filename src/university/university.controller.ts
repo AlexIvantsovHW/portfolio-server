@@ -6,12 +6,14 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
 import { UniversityService } from './university.service';
 import { UniversityEntity } from './entities/university.entity';
 import { UpdateUniversityDto } from './dto/update-university.dto';
 import { CreateUniversityDto } from './dto/create-university.dto';
+import { JwtAuthGuard } from 'src/auth/guards/auth/auth.guard';
 
 @Controller('university')
 export class UniversityController {
@@ -24,6 +26,8 @@ export class UniversityController {
   findOne(@Param('id') id: string) {
     return this.universityService.findOne(+id);
   }
+
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(
     @Param('id') id: string,
@@ -31,10 +35,14 @@ export class UniversityController {
   ) {
     return this.universityService.update(+id, updateUniversityDto);
   }
+
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   delete(@Param('id') id: string) {
     return this.universityService.delete(+id);
   }
+
+  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body(new ValidationPipe()) createUniversityDto: CreateUniversityDto) {
     return this.universityService.create(createUniversityDto);
