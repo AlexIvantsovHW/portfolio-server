@@ -17,8 +17,13 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
+
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+
     "paths": {
       "src/*": ["src/*"]
     }
-  }
+  },
+  "include": ["src/**/*.ts", "src/types/**/*.d.ts"],
+  "exclude": ["node_modules", "dist"]
 }
