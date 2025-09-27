@@ -20,7 +20,7 @@ import { IAuthenticatedRequest } from './module/AuthenticatedRequest.type';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post()
+  @Post('login')
   async login(
     @Body() loginDto: LoginDto,
     @Res({ passthrough: true }) response: Response,
@@ -33,9 +33,10 @@ export class AuthController {
   }
 
   @Post('signin')
-  signin(@Body() signinDto: SigninDto) {
+  async signin(@Body() signinDto: SigninDto) {
+    console.log('signinDto', signinDto);
     try {
-      return this.authService.signin(signinDto);
+      return await this.authService.signin(signinDto);
     } catch (e) {
       handlePrismaError(e);
     }
@@ -58,7 +59,6 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @Get('check')
   checkAuth(@Req() req: IAuthenticatedRequest) {
-    // Если guard пропустил, значит токен валиден
     return {
       message: 'Authenticated',
       user: req.user,

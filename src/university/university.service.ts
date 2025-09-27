@@ -12,14 +12,17 @@ export class UniversityService {
 
   async findAll(): Promise<UniversityEntity[]> {
     const universities = await this.prisma.universities.findMany();
-    const transferDateUniversities = universities.map((university) => {
-      return {
-        ...university,
-        startAt: university.startAt,
-        endAt: university.endAt,
-      };
-    });
-
+    const transferDateUniversities = universities
+      .map((university) => {
+        return {
+          ...university,
+          startAt: university.startAt,
+          endAt: university.endAt,
+        };
+      })
+      .sort(
+        (a, b) => new Date(b.endAt).getTime() - new Date(a.endAt).getTime(),
+      );
     return transferDateUniversities;
   }
   async findOne(id: number): Promise<Tresponse<UniversitiesType>> {

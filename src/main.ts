@@ -20,7 +20,7 @@ async function bootstrap() {
   SwaggerModule.setup('docs', app, documentFactory);
 
   app.setGlobalPrefix('api', {
-    exclude: ['auth/(.*)'], // Исключаем auth эндпоинты из глобального префикса
+    exclude: ['auth/(.*)'],
   });
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   app.enableCors({

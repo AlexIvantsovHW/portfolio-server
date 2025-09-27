@@ -16,7 +16,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     const request = context.switchToHttp().getRequest<Request>();
 
     // Если нет токена в cookies и в Authorization header
-    if (!request.cookies?.accessToken && !request.headers.authorization) {
+    if (!request.cookies?.refreshToken && !request.headers.authorization) {
       throw new UnauthorizedException('No access token provided');
     }
 

@@ -28,7 +28,7 @@ export class AuthService {
     const user = await this.prisma.user.findUnique({
       where: { email },
     });
-    console.log('user', user);
+
     if (!user) {
       throw new UnauthorizedException();
     }
@@ -91,6 +91,7 @@ export class AuthService {
     try {
       const { password, email, username } = signinDto;
       const saltRings = 10;
+      console.log('signinDto', signinDto);
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       const hashedPassword: string = await bcrypt.hash(password, saltRings);
       const newUser = await this.prisma.user.create({
