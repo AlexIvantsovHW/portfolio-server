@@ -10,6 +10,7 @@ services:
     environment:
       DATABASE_URL: postgres://alex:10032018@postgres:5432/portfolio_db?sch>
       PORT: 9001
+      BIND_HOST: 0.0.0.0
     ports:
       - '8080:9001'
     env_file:
@@ -18,7 +19,7 @@ services:
       sh -c "
         npx prisma generate &&
         npx prisma migrate deploy &&
-        npm run start
+        HOST=0.0.0.0 npm run start
       "
 
   postgres:

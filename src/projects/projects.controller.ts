@@ -6,10 +6,12 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { ProjectsService } from './projects.service';
+import { JwtAuthGuard } from 'src/auth/guards/auth/auth.guard';
 
 @Controller('projects')
 export class ProjectsController {
@@ -22,14 +24,20 @@ export class ProjectsController {
   findOne(@Param('id') id: string) {
     return this.projectsService.findOne(+id);
   }
+
+  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createProjectDto: CreateProjectDto) {
     return this.projectsService.create(createProjectDto);
   }
+
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   delete(@Param('id') id: string) {
     return this.projectsService.delete(+id);
   }
+
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProjectDto: UpdateProjectDto) {
     return this.projectsService.update(+id, updateProjectDto);

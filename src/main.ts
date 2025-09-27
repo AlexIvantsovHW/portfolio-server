@@ -3,9 +3,13 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import * as cookieParser from 'cookie-parser';
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors();
+
+  app.use(cookieParser());
+  //  app.enableCors();
+
   const config = new DocumentBuilder()
     .setTitle('Portfolio API ')
     .setDescription('API for portfolio backoffice')
@@ -13,11 +17,12 @@ async function bootstrap() {
     .addTag('api')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, documentFactory);
+  SwaggerModule.setup('docs', app, documentFactory);
 
-  app.setGlobalPrefix('api');
+  app.setGlobalPrefix('api', {
+    exclude: ['auth/(.*)'],
+  });
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
-  app.use(cookieParser());
   app.enableCors({
     origin: [
       'http://localhost:3000',
@@ -32,8 +37,10 @@ async function bootstrap() {
     exposedHeaders: 'set-cookie',
   });
   const PORT = process.env.PORT ? Number(process.env.PORT) : 9000;
+  const HOST = process.env.HOST || '127.0.0.1';
 
-  await app.listen(PORT ?? 9000);
+  await app.listen(PORT ?? 9000, HOST);
+  console.log(`Server is running on http://${HOST}:${PORT}`);
 }
-bootstrap();
+void bootstrap();
 /*  */

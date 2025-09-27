@@ -13,7 +13,10 @@ export class ProjectsService {
   constructor(private prisma: PrismaService) {}
 
   async findAll(): Promise<ProjectEntity[]> {
-    const projects = await this.prisma.projects.findMany();
+    const projects = await this.prisma.projects.findMany({
+      orderBy: { endAt: 'desc' },
+    });
+
     const dateTransformProjects = projects.map((project) => {
       return {
         ...project,
